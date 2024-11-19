@@ -1,9 +1,27 @@
-  <button id="jumboBtn" className="deskButton" onClick={playVideo}>
-          <FontAwesomeIcon icon={faPause} />
-        </button>
-        <button id="jumboBtn" className="mobileButton" onClick={playVideo}>
-          <FontAwesomeIcon icon={faPlay} />
-        </button>
+const API_KEY = '5cd640db7a351fb891b792aab5d5ad11'; // Replace with your TMDb API key
+const BASE_URL = 'https://api.themoviedb.org/3';
 
-        <FontAwesomeIcon icon={faVolumeUp} id="audioBtn" />
-        <FontAwesomeIcon icon={faVolumeMute} id="audioBtnMute" />
+
+
+Card Modal
+
+Poster Category  Video Director, Cast Tickets Reviews from other youtubes videos,, rotten tomatoe reviews
+Streaming on , Tickets Purchase dvds
+
+Page Streaming Guide
+
+Home page
+
+Jubotron
+
+Movies Most Popular  By Date New to old  
+Top Tv shows Most Popular  New to old
+
+
+
+Top movies
+
+Page Calender
+
+ Page Now streaming
+ Streaming guides with links to shows

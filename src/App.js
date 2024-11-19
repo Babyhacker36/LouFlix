@@ -1,7 +1,7 @@
 import "./App.css";
-import Navigation from "./components/Navigation/navigation"; // Import your Navbar component
-import Jumbotron from "./components/Jumbotron/jumbotron";
-import TestMovies from './components/TestMovies';
+import Navigation from "./components/Navigation/navigation.jsx"; // Import your Navbar component
+import Jumbotron from "./components/Jumbotron/jumbotron.jsx";
+import LatestMoviesSection from './components/MoviesContainer/LatestMoviesSection.jsx';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Jumbotron />
       </div>
       <div className="container-fluid">
-      <TestMovies />
+      <LatestMoviesSection />
       </div>
     </>
   );

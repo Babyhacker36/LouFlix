@@ -10,18 +10,20 @@ import {
   faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 
+// The component function itself
 const Jumbotron = () => {
   const [navbarHeight, setNavbarHeight] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true); // Track video play state
   const [isMuted, setIsMuted] = useState(true); // Track audio mute state
 
+  // Update navbar height dynamically
   useEffect(() => {
     const navbar = document.getElementById("navbar");
-    setNavbarHeight(navbar ? navbar.offsetHeight : 0);
-
     const handleResize = () => {
       setNavbarHeight(navbar ? navbar.offsetHeight : 0);
     };
+
+    setNavbarHeight(navbar ? navbar.offsetHeight : 0);
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -77,7 +79,6 @@ const Jumbotron = () => {
                 </button>
               )}
 
-              {/* Show volume buttons */}
               {isMuted ? (
                 <button
                   id="audioBtnMute"
@@ -101,7 +102,9 @@ const Jumbotron = () => {
 
         <div id="textDisplay">
           <p>
-          After his home is conquered by the tyrannical emperors who now lead Rome, Lucius is forced to enter the Colosseum and must look to his past to find strength to return the glory of Rome to its people.
+            After his home is conquered by the tyrannical emperors who now lead
+            Rome, Lucius is forced to enter the Colosseum and must look to his
+            past to find strength to return the glory of Rome to its people.
           </p>
         </div>
       </div>
@@ -114,4 +117,5 @@ const Jumbotron = () => {
   );
 };
 
-export default Jumbotron;
+// Use React.memo to prevent unnecessary re-renders
+export default React.memo(Jumbotron);
