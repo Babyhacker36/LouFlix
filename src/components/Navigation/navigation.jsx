@@ -43,32 +43,32 @@ function Navbar() {
             <ul className="navbar-nav d-flex" style={{ gap: "10px" }}>
               <li className="nav-item">
                 <a className="nav-link" href="#NP">
-                  NOW IN THEATERS
+                  TRAILERS
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#PM">
-                  NEW DVD RELEASES
+                 IN THEATERS 
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#PM">
-                  POPULAR 
+                  NOW STREAMING 
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#TRM">
-                  TOP RATED 
+                  CALENDER
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#TM">
-                  TRENDING 
+                  EVENTS 
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#UP">
-                  UPCOMING 
+                  LOU PICKS 
                 </a>
               </li>
             </ul>
