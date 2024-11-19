@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { fetchNowPlayingMovies, fetchUpcomingMovies } from '../../Api/moviesApi'; 
-import MoviesContainer from './MoviesContainer.jsx'; 
-import '../MoviesContainer/MoviesContainer.css'; 
+import React, { useEffect, useState, useRef } from 'react';
+import { fetchNowPlayingMovies, fetchUpcomingMovies } from '../../Api/moviesApi';
+import MoviesContainer from './MoviesContainer.jsx';
+import '../MoviesContainer/MoviesContainer.css';
 
 const LatestMoviesSection = () => {
-  const [movies, setMovies] = useState([]); 
-  const [visibleMovies, setVisibleMovies] = useState(6); 
+  const [movies, setMovies] = useState([]);
+  const [visibleMovies, setVisibleMovies] = useState(6);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Use ref to track scroll position
+  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const getMovies = async () => {
@@ -34,14 +37,28 @@ const LatestMoviesSection = () => {
 
     getMovies();
 
-    const intervalId = setInterval(getMovies, 30000); 
+    const intervalId = setInterval(getMovies, 30000);
 
     return () => clearInterval(intervalId);
-  }, [movies]);
+  }, [movies]); // Re-run when `movies` state changes
 
   const handleLoadMore = () => {
-    setVisibleMovies((prev) => prev + 6); 
+    // Save current scroll position before loading more
+    scrollPositionRef.current = window.scrollY;
+
+    // Update visible movies to show more
+    setVisibleMovies((prev) => prev + 6);
   };
+
+  // After visibleMovies update, restore the scroll position
+  useEffect(() => {
+    if (visibleMovies > 6) {
+      // Wait for next tick to ensure that the DOM is updated
+      setTimeout(() => {
+        window.scrollTo(0, scrollPositionRef.current); // Restore scroll position
+      }, 0);
+    }
+  }, [visibleMovies]);
 
   if (loading) {
     return <div className="loading">Loading...</div>;

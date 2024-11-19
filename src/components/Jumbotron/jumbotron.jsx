@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../Jumbotron/jumbo.css";
 import JumboVideo from "../../Assets/Videos/Gladiator2.mp4";
 import videoLogo from "../../Assets/Images/gladiator2logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlay,
-  faPause,
-  faVolumeUp,
-  faVolumeMute,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faPause, faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 
-// The component function itself
 const Jumbotron = () => {
   const [navbarHeight, setNavbarHeight] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true); // Track video play state
-  const [isMuted, setIsMuted] = useState(true); // Track audio mute state
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
 
-  // Update navbar height dynamically
   useEffect(() => {
     const navbar = document.getElementById("navbar");
     const handleResize = () => {
@@ -32,19 +26,17 @@ const Jumbotron = () => {
   }, []);
 
   const toggleVideoPlayback = () => {
-    const video = document.getElementById("jumbo-video");
     if (isPlaying) {
-      video.pause();
+      videoRef.current.pause();
     } else {
-      video.play();
+      videoRef.current.play();
     }
-    setIsPlaying(!isPlaying); // Toggle play state
+    setIsPlaying(!isPlaying);
   };
 
   const toggleMute = () => {
-    const video = document.getElementById("jumbo-video");
-    video.muted = !isMuted; // Toggle mute state on video element
-    setIsMuted(!isMuted); // Update mute state
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
   };
 
   return (
@@ -56,7 +48,7 @@ const Jumbotron = () => {
       <div id="video-info-div">
         <div className="row">
           <div className="col-6">
-            <img src={videoLogo} alt="Avatar 2 Logo" id="video-logo" />
+            <img src={videoLogo} alt="Gladiator 2 Logo" id="video-logo" />
           </div>
 
           <div className="col-6 video-btns-div">
@@ -109,7 +101,16 @@ const Jumbotron = () => {
         </div>
       </div>
 
-      <video autoPlay muted loop id="jumbo-video" className="jumbo-video">
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline // Prevents fullscreen on mobile devices
+        id="jumbo-video"
+        className="jumbo-video"
+        tabIndex="-1" // Prevents auto-focus on video
+      >
         <source src={JumboVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
@@ -117,5 +118,4 @@ const Jumbotron = () => {
   );
 };
 
-// Use React.memo to prevent unnecessary re-renders
 export default React.memo(Jumbotron);
