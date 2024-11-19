@@ -1,0 +1,9 @@
+  <button id="jumboBtn" className="deskButton" onClick={playVideo}>
+          <FontAwesomeIcon icon={faPause} />
+        </button>
+        <button id="jumboBtn" className="mobileButton" onClick={playVideo}>
+          <FontAwesomeIcon icon={faPlay} />
+        </button>
+
+        <FontAwesomeIcon icon={faVolumeUp} id="audioBtn" />
+        <FontAwesomeIcon icon={faVolumeMute} id="audioBtnMute" />

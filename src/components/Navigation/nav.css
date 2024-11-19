@@ -1,0 +1,82 @@
+/* General Navigation Styles */
+.navbar {
+  position: absolute; /* Use absolute positioning so it doesn't affect content layout */
+  top: 0; /* Position it at the top of the page */
+  left: 0;
+  width: 100%; /* Ensure it spans the full width */
+  z-index: 10;
+  background-color: #f8f9fa; /* Gray background for desktop */
+}
+
+/* Logo adjustments */
+.navbar-logo {
+  max-width: 100%;
+}
+
+/* Mobile size adjustments */
+@media (max-width: 1200px) {
+  .navbar-nav {
+    font-size: 80%;
+  
+  }
+}
+@media (max-width: 767px) {
+  .navbar-logo {
+    max-width: 150px; /* Smaller logo for mobile */
+    height: auto;
+  }
+
+  /* Mobile Navigation Menu - Initially hidden off-screen */
+  .navbar-collapse {
+    position: absolute;
+    top: -100%; /* Start off-screen (hidden) */
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Same background as desktop */
+    transition: top 0.3s ease; /* Smooth sliding effect */
+    z-index: 10; /* Ensure it's on top of content when shown */
+  }
+
+  /* When the Menu is Open, slide down */
+  .navbar-collapse.show {
+    top: 60px; /* Slide menu down below the navbar (adjust this value as needed) */
+  }
+
+  /* Mobile Navigation Links */
+  .navbar-nav {
+    text-align: center;
+    width: 100%;
+    padding-left: 0;
+    justify-content: center;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .nav-item {
+    margin: 8px 0; /* Tightened vertical spacing between nav items */
+  }
+
+  .nav-link {
+    color: black; /* Link text color */
+    font-size: 18px;
+    text-decoration: none;
+    padding: 8px 20px; /* Reduced padding for tighter links */
+    display: block;
+  }
+
+  .nav-link:hover {
+    background-color: #e2e6ea; /* Hover effect */
+  }
+
+  /* Hide Search Section on mobile */
+  .d-none.d-lg-block {
+    display: none;
+  }
+
+  /* Mobile Menu Toggler */
+  .navbar-toggler {
+    z-index: 120; /* Ensure hamburger button is on top */
+  }
+}
+
+
