@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import Navigation from "./components/Navigation/navigation.jsx";
-import Jumbotron from "./components/Jumbotron/jumbotron.jsx";
-import LatestMoviesSection from './components/MoviesContainer/LatestMoviesSection.jsx';
+import Jumbotron from "./components/HomePage/Jumbotron/jumbotron.jsx";
+// import LatestMoviesSection from './components/HomePage/SectionContainers/LatestMoviesSection.jsx';
+import MoviesSlider from './components/Moviesliders/MoviesSlider.jsx';
 
 function App() {
   useEffect(() => {
@@ -17,7 +18,10 @@ function App() {
       </div>
       <main className="p-0 container-fluid">
         <Jumbotron />
-        <LatestMoviesSection />
+        <MoviesSlider/>
+        
+        {/* <LatestMoviesSection /> */}
+        
       </main>
     </>
   );

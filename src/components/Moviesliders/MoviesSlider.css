@@ -1,0 +1,107 @@
+.slider-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 20px 0;
+    padding: 0 50px; /* Adds space on the left and right for the buttons */
+    justify-content: center; /* Center the entire slider horizontally */
+  }
+  
+  .arrow-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 20; /* Ensure buttons appear above the slider */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .arrow-btn.left {
+    position: absolute;
+    left: 10px;
+  }
+  
+  .arrow-btn.right {
+    position: absolute;
+    right: 10px;
+  }
+  
+  .arrow-btn:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+  }
+  
+  .movies-slider {
+    display: grid;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    scroll-behavior: smooth;
+    padding: 0 10px;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  .movies-slider::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar in Webkit browsers (Chrome, Safari) */
+  }
+  
+  .movies-slider {
+    -ms-overflow-style: none;  /* Hides scrollbar in Internet Explorer 10+ */
+    scrollbar-width: none;     /* Hides scrollbar in Firefox */
+  }
+  
+  .movie-card {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid green;
+  }
+  
+  .movie-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    pointer-events: none; /* Prevents interaction with the image when dragging */
+  }
+  
+  .movie-image:hover {
+    transform: scale(1.05);
+  }
+  
+  .movie-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .movie-release-date {
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  
+  .movie-score {
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+  
+  /* Responsive font size adjustments */
+  @media (max-width: 1200px) {
+    .movie-title {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .movie-title {
+      font-size: 0.9rem;
+    }
+  
+    .movies-slider {
+      grid-template-columns: 1fr; /* Only one movie per row on small screens */
+    }
+  }
+  

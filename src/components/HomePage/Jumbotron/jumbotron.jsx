@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../Jumbotron/jumbo.css";
-import JumboVideo from "../../Assets/Videos/Gladiator2.mp4";
-import videoLogo from "../../Assets/Images/gladiator2logo.png";
+import "./jumbo.css";
+import JumboVideo from "../../../Assets/Videos/Gladiator2.mp4";
+import videoLogo from "../../../Assets/Images/gladiator2logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 
