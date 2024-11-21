@@ -1,107 +1,96 @@
 .slider-container {
-    display: flex;
-    align-items: center;
     position: relative;
     margin: 20px 0;
-    padding: 0 50px; /* Adds space on the left and right for the buttons */
-    justify-content: center; /* Center the entire slider horizontally */
-  }
-  
-  .arrow-btn {
+    overflow: hidden;
+}
+
+.movies-slider {
     display: flex;
+    gap: 16px; /* Added gap between cards */
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    padding: 0;
+    -webkit-overflow-scrolling: touch; /* For smoother mobile scrolling */
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 8px; /* Added margin between cards */
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.movie-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.movie-release-date,
+.movie-score {
+    font-size: 14px;
+    color: #666;
+}
+
+.arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
-    border-radius: 50%;
-    padding: 10px 15px;
+    padding: 8px 16px;
+    font-size: 18px;
     cursor: pointer;
-    z-index: 20; /* Ensure buttons appear above the slider */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  }
-  
-  .arrow-btn.left {
-    position: absolute;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.arrow-btn.left {
     left: 10px;
-  }
-  
-  .arrow-btn.right {
-    position: absolute;
+}
+
+.arrow-btn.right {
     right: 10px;
-  }
-  
-  .arrow-btn:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #000;
-  }
-  
-  .movies-slider {
-    display: grid;
-    overflow-x: auto; /* Allow horizontal scrolling */
-    scroll-behavior: smooth;
-    padding: 0 10px;
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
-  
-  .movies-slider::-webkit-scrollbar {
-    display: none; /* Hides the scrollbar in Webkit browsers (Chrome, Safari) */
-  }
-  
-  .movies-slider {
-    -ms-overflow-style: none;  /* Hides scrollbar in Internet Explorer 10+ */
-    scrollbar-width: none;     /* Hides scrollbar in Firefox */
-  }
-  
-  .movie-card {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid green;
-  }
-  
-  .movie-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s;
-    pointer-events: none; /* Prevents interaction with the image when dragging */
-  }
-  
-  .movie-image:hover {
-    transform: scale(1.05);
-  }
-  
-  .movie-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  .movie-release-date {
-    font-size: 1rem;
-    margin-top: 5px;
-  }
-  
-  .movie-score {
-    font-size: 1rem;
-    margin-top: 5px;
-  }
-  
-  /* Responsive font size adjustments */
-  @media (max-width: 1200px) {
-    .movie-title {
-      font-size: 1rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .movie-title {
-      font-size: 0.9rem;
-    }
-  
+}
+
+.arrow-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar on mobile */
+@media (max-width: 767px) {
     .movies-slider {
-      grid-template-columns: 1fr; /* Only one movie per row on small screens */
+        gap: 0;
+        /* Hide scrollbar on mobile */
+     
     }
-  }
-  
+
+    .movie-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin: 0; /* Optional: Remove margin on mobile for full-width display */
+    }
+}
+
+/* Desktop adjustments: Ensure appropriate scrollability */
+@media (min-width: 768px) {
+    .movies-slider {
+        gap: 16px; /* Add space between cards */
+    }
+}
