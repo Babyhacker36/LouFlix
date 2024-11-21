@@ -11,13 +11,13 @@ export const fetchNowPlayingMovies = async (page = 1, region = 'US') => {
   try {
     const response = await fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}&page=${page}&region=${region}`);
     if (!response.ok) {
-      throw new Error('Failed to fetch now playing movies');
+      throw new Error(`Failed to fetch now playing movies. Status: ${response.status}`);
     }
     const data = await response.json();
     return data.results; // Return the array of now playing movies
   } catch (error) {
     console.error('Error fetching now playing movies:', error);
-    throw error; // Propagate the error
+    throw new Error('Error fetching now playing movies. Please try again later.');
   }
 };
 
@@ -31,12 +31,32 @@ export const fetchUpcomingMovies = async (page = 1, region = 'US') => {
   try {
     const response = await fetch(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&page=${page}&region=${region}`);
     if (!response.ok) {
-      throw new Error('Failed to fetch upcoming movies');
+      throw new Error(`Failed to fetch upcoming movies. Status: ${response.status}`);
     }
     const data = await response.json();
     return data.results; // Return the array of upcoming movies
   } catch (error) {
     console.error('Error fetching upcoming movies:', error);
-    throw error; // Propagate the error
+    throw new Error('Error fetching upcoming movies. Please try again later.');
+  }
+};
+
+/**
+ * Fetches video data for a specific movie.
+ * @param {number} movieId - The movie ID.
+ * @returns {Promise<string>} The YouTube video embed URL or null if no video is found.
+ */
+export const fetchMovieVideos = async (movieId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch videos for movie ID: ${movieId}`);
+    }
+    const data = await response.json();
+    const video = data.results.find((v) => v.site === 'YouTube');
+    return video ? `https://www.youtube.com/embed/${video.key}` : null;
+  } catch (error) {
+    console.error('Error fetching movie videos:', error);
+    return null;
   }
 };

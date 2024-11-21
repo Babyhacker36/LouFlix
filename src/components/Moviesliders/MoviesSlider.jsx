@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { fetchNowPlayingMovies, fetchUpcomingMovies } from '../../Api/moviesApi';
+import { fetchNowPlayingMovies, fetchUpcomingMovies, fetchMovieVideos } from '../../Api/moviesApi';
 import './MoviesSlider.css';
 
 const MoviesSlider = () => {
@@ -7,6 +7,8 @@ const MoviesSlider = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [itemsToShow, setItemsToShow] = useState(1); // Number of cards to show
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal open/close state
+  const [videoUrl, setVideoUrl] = useState(''); // Store the video URL
   const sliderRef = useRef(null);
 
   // Fetch movies
@@ -81,7 +83,7 @@ const MoviesSlider = () => {
 
   // Scroll logic for buttons
   const scrollLeft = () => {
-    const scrollAmount = sliderRef.current.offsetWidth / itemsToShow;
+    const scrollAmount = 250; // Adjust based on your card width
     sliderRef.current.scrollBy({
       left: -scrollAmount,
       behavior: 'smooth',
@@ -89,11 +91,34 @@ const MoviesSlider = () => {
   };
 
   const scrollRight = () => {
-    const scrollAmount = sliderRef.current.offsetWidth / itemsToShow;
+    const scrollAmount = 250; // Adjust based on your card width
     sliderRef.current.scrollBy({
       left: scrollAmount,
       behavior: 'smooth',
     });
+  };
+
+  // Open the modal and set the video URL
+  const openModal = async (movieId) => {
+    try {
+      const videoUrl = await fetchMovieVideos(movieId); // Fetch the video URL using the movie ID
+      if (videoUrl) {
+        setVideoUrl(videoUrl);
+        setIsModalOpen(true);
+      } else {
+        console.error('No trailer available for this movie.');
+        alert('No trailer available for this movie.');
+      }
+    } catch (error) {
+      console.error('Error fetching video:', error);
+      alert('An error occurred while fetching the video.');
+    }
+  };
+
+  // Close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setVideoUrl('');
   };
 
   if (loading) {
@@ -111,7 +136,7 @@ const MoviesSlider = () => {
   return (
     <div className="slider-container">
       <div className="slider-wrapper">
-        <h2>Latest Movies </h2>
+        <h2>Latest Movies</h2>
         <button className="arrow-btn left" onClick={scrollLeft}>
           &#9664;
         </button>
@@ -143,6 +168,7 @@ const MoviesSlider = () => {
               <h2 className="movie-title">{movie.title}</h2>
               <p className="movie-release-date">{movie.release_date}</p>
               <p className="movie-score">Score: {movie.vote_average}</p>
+              <button className="ticket-btn" onClick={() => openModal(movie.id)}>Watch Trailer</button>
             </div>
           ))}
         </div>
@@ -150,6 +176,26 @@ const MoviesSlider = () => {
           &#9654;
         </button>
       </div>
+
+      {/* Modal for Video */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={closeModal}>
+              &#10006;
+            </button>
+            <iframe
+              title="Movie Trailer"
+              width="560"
+              height="315"
+              src={videoUrl}
+              frameBorder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
