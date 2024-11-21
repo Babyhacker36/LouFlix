@@ -111,6 +111,7 @@ const MoviesSlider = () => {
   return (
     <div className="slider-container">
       <div className="slider-wrapper">
+        <h2>Latest Movies </h2>
         <button className="arrow-btn left" onClick={scrollLeft}>
           &#9664;
         </button>
