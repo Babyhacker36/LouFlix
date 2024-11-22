@@ -121,6 +121,17 @@ const MoviesSlider = () => {
     setVideoUrl('');
   };
 
+  // Format date to Nov 23, 2024
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  };
+
+  // Check if the rating is 0 and display "Not rated yet"
+  const getRating = (rating) => {
+    return rating === 0 ? 'Not rated yet' : `Score: ${rating}`;
+  };
+
   if (loading) {
     return <div className="loading">Loading movies...</div>;
   }
@@ -160,15 +171,24 @@ const MoviesSlider = () => {
                 maxWidth: `${100 / itemsToShow}%`,
               }}
             >
-              <img
+            <div className="img-div-slider">
+            <img
                 src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/fallback-image.jpg'}
                 alt={movie.title}
                 className="movie-image"
               />
-              <h2 className="movie-title">{movie.title}</h2>
-              <p className="movie-release-date">{movie.release_date}</p>
-              <p className="movie-score">Score: {movie.vote_average}</p>
-              <button className="ticket-btn" onClick={() => openModal(movie.id)}>Watch Trailer</button>
+            </div>
+              <div className="text-div-slider">
+                <h2 className="movie-title">{movie.title}</h2>
+                <p className="movie-release-date">{formatDate(movie.release_date)}</p>
+                <p className="movie-score">{getRating(movie.vote_average)}</p>
+              </div>
+
+              <div className="btn-div-slider">
+                <button className="ticket-btn" onClick={() => openModal(movie.id)}>
+                  Watch Trailer
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -184,15 +204,22 @@ const MoviesSlider = () => {
             <button className="modal-close-btn" onClick={closeModal}>
               &#10006;
             </button>
-            <iframe
-              title="Movie Trailer"
-              width="560"
-              height="315"
-              src={videoUrl}
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+
+            <div className="modal-left">
+              <iframe
+                title="Movie Trailer"
+                width="100%"
+                height="100%"
+                src={videoUrl}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            <div className="modal-right">
+              Right
+            </div>
           </div>
         </div>
       )}
