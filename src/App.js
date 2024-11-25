@@ -4,7 +4,6 @@ import Navigation from "./components/Navigation/navigation.jsx";
 import Jumbotron from "./components/HomePage/Jumbotron/jumbotron.jsx";
 // import LatestMoviesSection from './components/HomePage/SectionContainers/LatestMoviesSection.jsx';
 import HomeMoviesSlider from './components/HomePage/SectionContainers/HomeMoviesSlider.jsx';
-
 function App() {
   useEffect(() => {
     // Disable automatic scroll restoration

@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { fetchNowPlayingMovies, fetchUpcomingMovies, fetchMovieVideos, fetchGenres } from '../../../Api/moviesApi';
+import MovieCard from '../../Cards/MovieCards.jsx'; // Import the MovieCard component
 import './HomeMoviesSlider.css';
 
 const MoviesSlider = () => {
   const [movies, setMovies] = useState([]);
-  const [genres, setGenres] = useState({}); // Store genre mapping
+  const [genres, setGenres] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [itemsToShow, setItemsToShow] = useState(1);
@@ -12,7 +13,6 @@ const MoviesSlider = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const sliderRef = useRef(null);
 
-  // Fetch movies and genres on mount
   useEffect(() => {
     const getMoviesAndGenres = async () => {
       try {
@@ -31,7 +31,7 @@ const MoviesSlider = () => {
           .sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
 
         setMovies(mergedMovies);
-        setGenres(genresData); // Save genres mapping
+        setGenres(genresData);
         setLoading(false);
       } catch (err) {
         console.error(err);
@@ -43,7 +43,6 @@ const MoviesSlider = () => {
     getMoviesAndGenres();
   }, []);
 
-  // Dynamically update itemsToShow
   useEffect(() => {
     const updateItemsToShow = () => {
       const screenWidth = window.innerWidth;
@@ -66,7 +65,6 @@ const MoviesSlider = () => {
     };
   }, []);
 
-  // Drag-to-scroll logic
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
@@ -89,11 +87,9 @@ const MoviesSlider = () => {
     isDragging.current = false;
   };
 
-  // Button scroll functionality
   const scrollLeft = () => sliderRef.current.scrollBy({ left: -250, behavior: 'smooth' });
   const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: 'smooth' });
 
-  // Open/close modal with video
   const openModal = async (movieId) => {
     try {
       const videoUrl = await fetchMovieVideos(movieId);
@@ -113,15 +109,9 @@ const MoviesSlider = () => {
     setVideoUrl('');
   };
 
-  // Format genres based on fetched genre mapping
-  const formatGenres = (genreIds) => {
-    if (!Array.isArray(genreIds)) return 'Unknown genres';
-    const genreNames = genreIds.map((id) => genres[id]).filter(Boolean);
-    return genreNames.length ? genreNames.join(', ') : 'Unknown genres';
-  };
 
-  // Loading, error, or empty states
-  if (loading) return <div className="loading">Loading movies...</div>;
+
+  if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error}</div>;
   if (!movies.length) return <div className="no-movies">No movies available at the moment.</div>;
 
@@ -142,34 +132,18 @@ const MoviesSlider = () => {
           onTouchEnd={handleMouseUp}
         >
           {movies.map((movie) => (
-            <div
+            <MovieCard
               key={movie.id}
-              className="movie-card"
-              style={{ flex: `0 0 ${100 / itemsToShow}%`, maxWidth: `${100 / itemsToShow}%` }}
-            >
-              <div className="img-div-slider">
-                <img
-                  src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/fallback-image.jpg'}
-                  alt={movie.title}
-                  className="movie-image"
-                />
-              </div>
-              <div className="text-div-slider">
-                <p className="movie-title">{movie.title}</p>
-                <p className="movie-release-date">{new Date(movie.release_date).toLocaleDateString()}</p>
-                <p className="movie-genres">{formatGenres(movie.genre_ids)}</p>
-                <p className="movie-score">{movie.vote_average === 0 ? 'Not rated yet' : `Score: ${movie.vote_average}`}</p>
-              </div>
-              <div className="btn-div-slider">
-                <button className="ticket-btn" onClick={() => openModal(movie.id)}>Watch Trailer</button>
-              </div>
-            </div>
+              movie={movie}
+              genres={genres}
+              itemsToShow={itemsToShow}
+              openModal={openModal}
+            />
           ))}
         </div>
         <button className="arrow-btn right" onClick={scrollRight}>&#9654;</button>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
