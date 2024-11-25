@@ -3,7 +3,7 @@ import "./App.css";
 import Navigation from "./components/Navigation/navigation.jsx";
 import Jumbotron from "./components/HomePage/Jumbotron/jumbotron.jsx";
 // import LatestMoviesSection from './components/HomePage/SectionContainers/LatestMoviesSection.jsx';
-import MoviesSlider from './components/Moviesliders/MoviesSlider.jsx';
+import HomeMoviesSlider from './components/HomePage/SectionContainers/HomeMoviesSlider.jsx';
 
 function App() {
   useEffect(() => {
@@ -18,7 +18,7 @@ function App() {
       </div>
       <main className="p-0 container-fluid">
         <Jumbotron />
-        <MoviesSlider/>
+        <HomeMoviesSlider/>
         
         {/* <LatestMoviesSection /> */}
         

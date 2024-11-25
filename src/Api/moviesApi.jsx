@@ -60,3 +60,25 @@ export const fetchMovieVideos = async (movieId) => {
     return null;
   }
 };
+
+/**
+ * Fetches movie details, including genres.
+ * @param {number} movieId - The movie ID.
+ * @returns {Promise<Object>} An object containing movie details including genres.
+ */
+export const fetchMovieDetails = async (movieId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch details for movie ID: ${movieId}`);
+    }
+    const data = await response.json();
+    return {
+      genres: data.genres.map((genre) => genre.name).join(', '), // Combine genre names into a string
+      ...data,
+    };
+  } catch (error) {
+    console.error('Error fetching movie details:', error);
+    throw new Error('Error fetching movie details. Please try again later.');
+  }
+};

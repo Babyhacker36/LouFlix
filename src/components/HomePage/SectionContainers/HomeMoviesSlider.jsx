@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { fetchNowPlayingMovies, fetchUpcomingMovies, fetchMovieVideos } from '../../Api/moviesApi';
-import './MoviesSlider.css';
+import { fetchNowPlayingMovies, fetchUpcomingMovies, fetchMovieVideos } from '../../../Api/moviesApi';
+import './HomeMoviesSlider.css';
 
 const MoviesSlider = () => {
   const [movies, setMovies] = useState([]);
@@ -132,6 +132,10 @@ const MoviesSlider = () => {
     return rating === 0 ? 'Not rated yet' : `Score: ${rating}`;
   };
 
+  const getGenres = (genres) => {
+    return genres && genres.length > 0 ? genres.join(', ') : 'Unknown genres';
+  };
+
   if (loading) {
     return <div className="loading">Loading movies...</div>;
   }
@@ -171,19 +175,20 @@ const MoviesSlider = () => {
                 maxWidth: `${100 / itemsToShow}%`,
               }}
             >
-            <div className="img-div-slider">
-            <img
-                src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/fallback-image.jpg'}
-                alt={movie.title}
-                className="movie-image"
-              />
-            </div>
+              <div className="img-div-slider">
+                <img
+                  src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/fallback-image.jpg'}
+                  alt={movie.title}
+                  className="movie-image"
+                />
+              </div>
               <div className="text-div-slider">
                 <h2 className="movie-title">{movie.title}</h2>
+               
                 <p className="movie-release-date">{formatDate(movie.release_date)}</p>
+                <p className="movie-genres">{getGenres(movie.genres)}</p>
                 <p className="movie-score">{getRating(movie.vote_average)}</p>
               </div>
-
               <div className="btn-div-slider">
                 <button className="ticket-btn" onClick={() => openModal(movie.id)}>
                   Watch Trailer
@@ -204,7 +209,6 @@ const MoviesSlider = () => {
             <button className="modal-close-btn" onClick={closeModal}>
               &#10006;
             </button>
-
             <div className="modal-left">
               <iframe
                 title="Movie Trailer"
@@ -216,10 +220,7 @@ const MoviesSlider = () => {
                 allowFullScreen
               ></iframe>
             </div>
-
-            <div className="modal-right">
-              Right
-            </div>
+            <div className="modal-right">Right</div>
           </div>
         </div>
       )}

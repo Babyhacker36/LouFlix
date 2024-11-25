@@ -142,6 +142,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .modal-content {
@@ -150,7 +151,7 @@
   border-radius: 8px;
   text-align: center;
   width: 80%;
-  height: 50vh;
+  height: 60vh;
   max-width: 1200px;
   display: flex;
   flex-direction: row;
@@ -163,15 +164,17 @@
 
 .modal-left {
   width: 60%;
+
 }
 
 .modal-right {
   width: 35%;
+  padding: 10px;
 }
 
 .modal-close-btn {
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 10px;
   font-size: 30px;
   color: #333;
@@ -185,22 +188,44 @@
   color: #dc3545;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1024px) {
   .modal-content {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
-    width: 80%;
-    height: 60vh;
+    width: 100%;
+    height: 70vh;
     max-width: 1200px;
     display: flex;
     flex-direction: column;
+  }
+  .modal-left {
+    width: 100%;
+    height: 60%;
+    padding-top: 25px;
+  }
+  
+  .modal-right {
+    width: 100%;
+    height: 40%;
+    
   }
 }
 
 /* Mobile adjustments */
 @media (max-width: 767px) {
+  .modal-left {
+    width: 100%;
+    height: 50%;
+    padding-top: 25px;
+  }
+  
+  .modal-right {
+    width: 100%;
+    height: 40%;
+    
+  }
   .movies-slider {
     gap: 0;
   }

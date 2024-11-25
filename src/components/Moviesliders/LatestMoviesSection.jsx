@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchNowPlayingMovies, fetchUpcomingMovies } from '../../../Api/moviesApi.jsx';
+import { fetchNowPlayingMovies, fetchUpcomingMovies } from '../../Api/moviesApi.jsx';
 import HomeContainer from './HomeContainers.jsx';
 import '../SectionContainers/HomeContainer.css';
 
