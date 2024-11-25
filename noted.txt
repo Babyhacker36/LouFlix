@@ -279,3 +279,32 @@ back up to the home container css
     background-color: #ccc;
     cursor: not-allowed;
   }
+
+
+
+  to fetch the genres of the movies 
+
+
+    // Fetch movies
+  useEffect(() => {
+    const getMovies = async () => {
+      try {
+        setLoading(true);
+        const nowPlayingMovies = await fetchNowPlayingMovies(1);
+        const upcomingMovies = await fetchUpcomingMovies(1);
+        const mergedMovies = [
+          ...nowPlayingMovies,
+          ...upcomingMovies,
+        ]
+          .filter((movie, index, self) => self.findIndex((m) => m.id === movie.id) === index)
+          .sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        setMovies(mergedMovies);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to fetch movies. Please try again later.');
+        setLoading(false);
+      }
+    };
+
+    getMovies();
+  }, []);

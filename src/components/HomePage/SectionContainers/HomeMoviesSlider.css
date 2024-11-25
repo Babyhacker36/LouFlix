@@ -4,9 +4,9 @@
   overflow: hidden;
 }
 
-.slider-wrapper h1 {
+.slider-wrapper h2 {
   font-size: 1.8em;
-  margin: 10px 10px 20px;
+  margin: 20px 10px;
 }
 
 /* Slider itself */
@@ -57,7 +57,8 @@
 }
 
 .movie-title {
-  font-size: 1.1em;
+  font-size: 1em;
+  font-weight: bold;
   margin: 2px 0;
 }
 

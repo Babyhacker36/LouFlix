@@ -21,6 +21,9 @@ export const fetchNowPlayingMovies = async (page = 1, region = 'US') => {
   }
 };
 
+
+
+
 /**
  * Fetches upcoming movies from TMDb.
  * @param {number} page - The page number for pagination.
@@ -40,6 +43,9 @@ export const fetchUpcomingMovies = async (page = 1, region = 'US') => {
     throw new Error('Error fetching upcoming movies. Please try again later.');
   }
 };
+
+
+
 
 /**
  * Fetches video data for a specific movie.
@@ -80,5 +86,26 @@ export const fetchMovieDetails = async (movieId) => {
   } catch (error) {
     console.error('Error fetching movie details:', error);
     throw new Error('Error fetching movie details. Please try again later.');
+  }
+};
+
+/**
+ * Fetches a list of movie genres from TMDb.
+ * @returns {Promise<Object>} A mapping of genre IDs to genre names.
+ */
+export const fetchGenres = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch genres. Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.genres.reduce((acc, genre) => {
+      acc[genre.id] = genre.name; // Map genre ID to genre name
+      return acc;
+    }, {});
+  } catch (error) {
+    console.error('Error fetching genres:', error);
+    throw new Error('Error fetching genres. Please try again later.');
   }
 };
