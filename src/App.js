@@ -3,7 +3,8 @@ import "./App.css";
 import Navigation from "./components/Navigation/navigation.jsx";
 import Jumbotron from "./components/HomePage/Jumbotron/jumbotron.jsx";
 // import LatestMoviesSection from './components/HomePage/SectionContainers/LatestMoviesSection.jsx';
-import HomeMoviesSlider from './components/HomePage/SectionContainers/HomeMoviesSlider.jsx';
+import InTheatersMovieSlider from './components/HomePage/SectionContainers/InTheatersMovieSlider.jsx';
+import UpcomingMoviesSlider from "./components/HomePage/SectionContainers/UpcomingMovieslider.jsx";
 function App() {
   useEffect(() => {
     // Disable automatic scroll restoration
@@ -17,8 +18,9 @@ function App() {
       </div>
       <main className="p-0 container-fluid">
         <Jumbotron />
-        <HomeMoviesSlider/>
-        
+        <UpcomingMoviesSlider/>
+        <InTheatersMovieSlider/>
+     
         {/* <LatestMoviesSection /> */}
         
       </main>

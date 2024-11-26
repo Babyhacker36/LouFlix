@@ -1,39 +1,10 @@
-const API_KEY = '5cd640db7a351fb891b792aab5d5ad11'; // Replace with your TMDb API key
-const BASE_URL = 'https://api.themoviedb.org/3';
-
-
-
-Card Modal
-
-Poster Category  Video Director, Cast Tickets Reviews from other youtubes videos,, rotten tomatoe reviews
-Streaming on , Tickets Purchase dvds
-
-Page Streaming Guide
-
-To do:
-
-Watch trailer button model - seperate into a compontent.
-
-
-
-
-
-Top movies
-
-Page Calender
-
- Page Now streaming
- Streaming guides with links to shows
-
-
-in theaters back ups 
 import React, { useRef, useEffect, useState } from 'react';
-import { fetchNowPlayingMovies, fetchUpcomingMovies, fetchMovieVideos, fetchGenres } from '../../../Api/moviesApi.jsx';
+import { fetchNowPlayingMovies, fetchGenres, fetchMovieVideos } from '../../../Api/moviesApi.jsx';
 import './HomeMoviesSlider.css';
-import MovieCard from '../../Cards/MovieCards.jsx'; 
+import MovieCard from '../../Cards/MovieCards.jsx';
 import MovieModal from '../../Modals/MovieModal.jsx';
 
-const MoviesSlider = () => {
+const InTheatersMoviesSlider = () => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState({});
   const [error, setError] = useState(null);
@@ -43,24 +14,25 @@ const MoviesSlider = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const sliderRef = useRef(null);
 
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeftStart = useRef(0);
+
   useEffect(() => {
     const getMoviesAndGenres = async () => {
       try {
         setLoading(true);
-        const [nowPlayingMovies, upcomingMovies, genresData] = await Promise.all([
+        const [nowPlayingMovies, genresData] = await Promise.all([
           fetchNowPlayingMovies(1),
-          fetchUpcomingMovies(1),
           fetchGenres(),
         ]);
-
-        const mergedMovies = [
-          ...nowPlayingMovies,
-          ...upcomingMovies,
-        ]
-          .filter((movie, index, self) => self.findIndex((m) => m.id === movie.id) === index)
-          .sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
-
-        setMovies(mergedMovies);
+  
+        // Sort movies by release date (newest first)
+        const sortedMovies = nowPlayingMovies.sort((a, b) => 
+          new Date(b.release_date) - new Date(a.release_date)
+        );
+  
+        setMovies(sortedMovies);
         setGenres(genresData);
         setLoading(false);
       } catch (err) {
@@ -69,9 +41,10 @@ const MoviesSlider = () => {
         setLoading(false);
       }
     };
-
+  
     getMoviesAndGenres();
   }, []);
+  
 
   useEffect(() => {
     const updateItemsToShow = () => {
@@ -95,30 +68,36 @@ const MoviesSlider = () => {
     };
   }, []);
 
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftStart = useRef(0);
+  const scrollLeft = () => sliderRef.current.scrollBy({ left: -250, behavior: 'smooth' });
+  const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: 'smooth' });
 
   const handleMouseDown = (e) => {
     isDragging.current = true;
     startX.current = e.pageX || e.touches[0].pageX;
     scrollLeftStart.current = sliderRef.current.scrollLeft;
-    e.preventDefault();
+    sliderRef.current.style.scrollBehavior = 'auto'; // Disable smooth scrolling during drag
+    e.preventDefault(); // Prevent default actions like text selection
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging.current) return;
     const x = e.pageX || e.touches[0].pageX;
-    const walk = (x - startX.current) * 1.5;
-    sliderRef.current.scrollLeft = scrollLeftStart.current - walk;
+    const distanceDragged = startX.current - x;
+
+    // Allow minimal movement to activate dragging
+    if (Math.abs(distanceDragged) > 0) {
+      sliderRef.current.scrollLeft = scrollLeftStart.current + distanceDragged;
+    }
+
+    e.preventDefault(); // Prevent unintended behaviors like page scrolling on touch devices
   };
 
   const handleMouseUp = () => {
-    isDragging.current = false;
+    if (isDragging.current) {
+      sliderRef.current.style.scrollBehavior = 'smooth'; // Re-enable smooth scrolling after drag
+    }
+    isDragging.current = false; // Reset dragging state
   };
-
-  const scrollLeft = () => sliderRef.current.scrollBy({ left: -250, behavior: 'smooth' });
-  const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: 'smooth' });
 
   const openModal = async (movieId) => {
     try {
@@ -138,8 +117,6 @@ const MoviesSlider = () => {
     setIsModalOpen(false);
     setVideoUrl('');
   };
-
-
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error}</div>;
@@ -178,6 +155,4 @@ const MoviesSlider = () => {
   );
 };
 
-export default MoviesSlider;
-
-
+export default InTheatersMoviesSlider;

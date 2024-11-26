@@ -29,21 +29,23 @@ const MovieCard = ({ movie, genres, itemsToShow, openModal }) => {
             background
             backgroundPadding={6}
             styles={buildStyles({
-              backgroundColor: "#808080",
+              backgroundColor: "#3f3f3f",
               textColor: "#fff",
               textSize: "25px",
-              pathColor: "#fff",
+              pathColor: "#00fcfc",
               trailColor: "red",
             })}
           />
         </div>
+
+        <div className="btn-div-slider">
+        <button className="watch-trailer-btn" onClick={() => openModal(movie.id)}>Watch Trailer</button>
+      </div>
         <p className="movie-title">{movie.title}</p>
         <p className="movie-release-date">{new Date(movie.release_date).toLocaleDateString()}</p>
         <p className="movie-genres">{formatGenres(movie.genre_ids)}</p>
       </div>
-      <div className="btn-div-slider">
-        <button className="ticket-btn" onClick={() => openModal(movie.id)}>Watch Trailer</button>
-      </div>
+     
     </div>
   );
 };

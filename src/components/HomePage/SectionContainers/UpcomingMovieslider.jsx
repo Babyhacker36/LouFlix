@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { fetchNowPlayingMovies, fetchUpcomingMovies, fetchMovieVideos, fetchGenres } from '../../../Api/moviesApi';
-import MovieCard from '../../Cards/MovieCards.jsx'; // Import the MovieCard component
+import { fetchUpcomingMovies, fetchGenres, fetchMovieVideos } from '../../../Api/moviesApi.jsx';
 import './HomeMoviesSlider.css';
+import MovieCard from '../../Cards/MovieCards.jsx';
+import MovieModal from '../../Modals/MovieModal.jsx';
 
-const MoviesSlider = () => {
+const UpcomingMoviesSlider = () => {
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState({});
   const [error, setError] = useState(null);
@@ -13,24 +14,36 @@ const MoviesSlider = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const sliderRef = useRef(null);
 
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeftStart = useRef(0);
+
   useEffect(() => {
     const getMoviesAndGenres = async () => {
       try {
         setLoading(true);
-        const [nowPlayingMovies, upcomingMovies, genresData] = await Promise.all([
-          fetchNowPlayingMovies(1),
+        const [upcomingMovies, genresData] = await Promise.all([
           fetchUpcomingMovies(1),
           fetchGenres(),
         ]);
 
-        const mergedMovies = [
-          ...nowPlayingMovies,
-          ...upcomingMovies,
-        ]
-          .filter((movie, index, self) => self.findIndex((m) => m.id === movie.id) === index)
-          .sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        // Get the next day's date
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0); // Set the time to midnight for comparison
 
-        setMovies(mergedMovies);
+        // Filter movies to include only those with a release date from tomorrow onwards
+        const filteredMovies = upcomingMovies.filter((movie) => {
+          const releaseDate = new Date(movie.release_date);
+          return releaseDate >= tomorrow;
+        });
+
+        // Sort movies by release date (newest first)
+        const sortedMovies = filteredMovies.sort((a, b) =>
+          new Date(b.release_date) - new Date(a.release_date)
+        );
+
+        setMovies(sortedMovies);
         setGenres(genresData);
         setLoading(false);
       } catch (err) {
@@ -65,30 +78,36 @@ const MoviesSlider = () => {
     };
   }, []);
 
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftStart = useRef(0);
+  const scrollLeft = () => sliderRef.current.scrollBy({ left: -250, behavior: 'smooth' });
+  const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: 'smooth' });
 
   const handleMouseDown = (e) => {
     isDragging.current = true;
     startX.current = e.pageX || e.touches[0].pageX;
     scrollLeftStart.current = sliderRef.current.scrollLeft;
-    e.preventDefault();
+    sliderRef.current.style.scrollBehavior = 'auto'; // Disable smooth scrolling during drag
+    e.preventDefault(); // Prevent default actions like text selection
   };
 
   const handleMouseMove = (e) => {
     if (!isDragging.current) return;
     const x = e.pageX || e.touches[0].pageX;
-    const walk = (x - startX.current) * 1.5;
-    sliderRef.current.scrollLeft = scrollLeftStart.current - walk;
+    const distanceDragged = startX.current - x;
+
+    // Allow minimal movement to activate dragging
+    if (Math.abs(distanceDragged) > 0) {
+      sliderRef.current.scrollLeft = scrollLeftStart.current + distanceDragged;
+    }
+
+    e.preventDefault(); // Prevent unintended behaviors like page scrolling on touch devices
   };
 
   const handleMouseUp = () => {
-    isDragging.current = false;
+    if (isDragging.current) {
+      sliderRef.current.style.scrollBehavior = 'smooth'; // Re-enable smooth scrolling after drag
+    }
+    isDragging.current = false; // Reset dragging state
   };
-
-  const scrollLeft = () => sliderRef.current.scrollBy({ left: -250, behavior: 'smooth' });
-  const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: 'smooth' });
 
   const openModal = async (movieId) => {
     try {
@@ -109,16 +128,14 @@ const MoviesSlider = () => {
     setVideoUrl('');
   };
 
-
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error}</div>;
-  if (!movies.length) return <div className="no-movies">No movies available at the moment.</div>;
+  if (!movies.length) return <div className="no-movies">No upcoming movies available at the moment.</div>;
 
   return (
     <div className="slider-container">
       <div className="slider-wrapper">
-        <h2>Latest Movies</h2>
+        <h2>Upcoming Movies</h2>
         <button className="arrow-btn left" onClick={scrollLeft}>&#9664;</button>
         <div
           className="movies-slider"
@@ -143,24 +160,9 @@ const MoviesSlider = () => {
         </div>
         <button className="arrow-btn right" onClick={scrollRight}>&#9654;</button>
       </div>
-
-      {isModalOpen && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={closeModal}>&#10006;</button>
-            <iframe
-              title="Movie Trailer"
-              width="100%"
-              height="100%"
-              src={videoUrl}
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </div>
-      )}
+      <MovieModal isOpen={isModalOpen} videoUrl={videoUrl} onClose={closeModal} />
     </div>
   );
 };
 
-export default MoviesSlider;
+export default UpcomingMoviesSlider;
