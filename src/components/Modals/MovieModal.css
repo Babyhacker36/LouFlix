@@ -5,7 +5,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,27 +13,28 @@
 }
 /* outer div container */
 .modal-content {
-    background-color: white;
+    background-color: #000000;
     padding: 0px 20px 30px;
     border-radius: 8px;
     text-align: center;
     width: 80%;
-    height: 60vh;
+    height: 70vh;
     max-width: 1200px;
     display: flex;
     flex-direction: column;
+    border: 2px solid #3f3f3f;
   }
 
 .modal-close-row {
-    background-color: red;
     width: 100%;
-    height: auto;
+    /* height: auto; */
     text-align: right;
+    /* background-color: green; */
 }
 
 .modal-close-btn {
     font-size: 20px;
-    color: #333;
+    color: #fff;
     background: none;
     border: none;
     cursor: pointer;
@@ -47,23 +48,48 @@
 
   .modal-content-inner-row {
     display: flex;
-    height: 100%;
+    flex-direction: row;
+    height: inherit;
+    /* background-color: green; */
+   
   }
 
 
 .modal-left,
 .modal-right {
   text-align: left;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 /* video control */
 .modal-left {
   width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+}
+/* video div  */
+.modal-left > div:nth-child(1)  {
+  height: 70%;
+  border: 2px solid #3f3f3f;
+  border-radius: 10px;
+}
+
+.modal-left iframe {
+  border-radius: 10px; 
+  overflow: hidden;    
+}
+/* text under video div  */
+.modal-left > div:nth-child(2)  {
+   height: auto;
+   color: white;
+   padding-top: 10px;
+
 }
 
 .modal-right {
   width: 45%;
-  /* padding: 0 10px; */
+  height: 100%;
   display: flex;
 
 }
@@ -93,22 +119,45 @@
 }
 .buy-tickets-btn-div {
   width: 75%;
+  height: auto;
   display: flex;
   align-items: center;
+  /* background-color: green; */
 }
 .buy-tickets-btn-div.full-width {
   width: 100%;
 }
 
+
+
+.buy-tickets-btn {
+  background-color: #000;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.buy-tickets-btn:hover {
+  background-color: #3f3f3f;
+  border: 1px solid #dc3545;
+  color: #fff;
+}
+.movie-release-date, .movie-genres,.runtime {
+  color: #fff;
+  font-size: 14px;
+  padding-right:5px ;
+}
 .modal-right-text-div {
     width: 60%;
-    background-color: red;
+    /* background-color: red; */
+    color: #fff;
+    height: 100%;
+    /* background-color: red; */
 }
 
-.movie-release-date {
-  color: #000; 
-
+.movie-details {
+  border-bottom: 1px solid #3f3f3f;
 }
+
 
 
 
@@ -121,11 +170,10 @@
     height: 70vh;
     max-width: 1200px;
     display: flex;
-    flex-direction: column;
+    flex-direction: colum;
   }
 
   .modal-close-row {
-    background-color: red;
     width: 100%;
     height: 5%;
     text-align: right;
@@ -134,7 +182,6 @@
   .modal-content-inner-row {
     display: flex;
     flex-direction: column;
-    /* background-color: green; */
     height: 100%;
   }
 

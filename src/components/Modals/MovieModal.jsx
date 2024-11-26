@@ -22,6 +22,7 @@ const MovieModal = ({ isOpen, videoUrl, onClose, movie = {}, genres = {} }) => {
     genre_ids = [],
     runtime, // Runtime from the movie details
     credits = {},
+    overview = "No description available", // Use overview as the movie description
   } = movie;
 
   const { cast = [], crew = [] } = credits;
@@ -44,6 +45,10 @@ const MovieModal = ({ isOpen, videoUrl, onClose, movie = {}, genres = {} }) => {
     ? `${Math.floor(runtime / 60)}h ${runtime % 60}m`
     : "Runtime not available";
 
+  // Extract the first 100 characters from the description
+  const shortDescription =
+    overview.slice(0, 550) + (overview.length > 550 ? "..." : "");
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -56,14 +61,22 @@ const MovieModal = ({ isOpen, videoUrl, onClose, movie = {}, genres = {} }) => {
         <div className="modal-content-inner-row">
           {/* Left Side: Trailer */}
           <div className="modal-left">
-            <iframe
-              title="Movie Trailer"
-              width="100%"
-              height="100%"
-              src={videoUrl}
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+            <div>
+              <iframe
+                title="Movie Trailer"
+                width="100%"
+                height="100%"
+                src={videoUrl}
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div>
+            <h5>
+                {title} ({releaseYear})
+              </h5>
+              <p className="movie-description">{shortDescription}</p>{" "}
+            </div>
           </div>
 
           {/* Right Side: Movie Details */}
@@ -105,29 +118,27 @@ const MovieModal = ({ isOpen, videoUrl, onClose, movie = {}, genres = {} }) => {
                     isZeroRating ? "full-width" : ""
                   }`}
                 >
-                  <button className="watch-trailer-btn">Buy Tickets</button>
+                  <button className="watch-trailer-btn buy-tickets-btn">Buy Tickets</button>
                 </div>
               </div>
             </div>
 
             {/* Movie Information */}
             <div className="modal-right-text-div">
-              <h2>
+              <h5>
                 {title} ({releaseYear})
-              </h2>
+              </h5>
               <div className="movie-details">
                 <span className="movie-release-date">
-                  Release Date: {formattedReleaseDate}
+                  {formattedReleaseDate}
                 </span>
-                <span className="movie-genres">
-                  Genres: {formatGenres(genre_ids)}
-                </span>
-                <span className="runtime">Runtime: {formattedRuntime}</span>
+                <span className="movie-genres">{formatGenres(genre_ids)}</span>
+                <p className="runtime"> {formattedRuntime}</p>
               </div>
 
               {/* Display Cast */}
-              <div>
-                <h3>Cast:</h3>
+              <div style={{ paddingTop: "10px" }}>
+                <h6>Cast:</h6>
                 {cast.length > 0 ? (
                   <ul>
                     {cast.slice(0, 5).map((actor) => (
@@ -141,19 +152,18 @@ const MovieModal = ({ isOpen, videoUrl, onClose, movie = {}, genres = {} }) => {
                 )}
               </div>
 
-              {/* Display Crew */}
-              <div>
-                <h3>Crew:</h3>
+              <div style={{ borderTop: "1px solid #3f3f3f", paddingTop: "10px" }}>
+                <h6>Director:</h6>
                 {crew.length > 0 ? (
                   <ul>
-                    {crew.slice(0, 5).map((member) => (
-                      <li key={member.id}>
-                        {member.name} - {member.job || "Unknown Role"}
-                      </li>
-                    ))}
+                    {crew
+                      .filter((member) => member.job === "Director") // Filter crew to show only directors
+                      .map((director) => (
+                        <li key={director.id}>{director.name}</li>
+                      ))}
                   </ul>
                 ) : (
-                  <p>No crew information available.</p>
+                  <p>No director information available.</p>
                 )}
               </div>
             </div>
