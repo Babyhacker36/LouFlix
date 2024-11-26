@@ -58,24 +58,56 @@
 }
 /* video control */
 .modal-left {
-  width: 60%;
+  width: 55%;
 }
 
 .modal-right {
-  width: 40%;
-  padding: 0 10px;
+  width: 45%;
+  /* padding: 0 10px; */
   display: flex;
 
 }
 
 .modal-right-image-div {
     width: 40%;
-    background-color: green;
+    padding: 0 10px 10px;
+}
+
+.modal-right-image-div img {
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  
+}
+.buy-tickets-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+ 
+  padding: 10px 0;
+}
+.circular-progress-modal-div {
+  width: 25%;
+  height: 100%;
+  padding: 5px 5px 5px 0;
+}
+.buy-tickets-btn-div {
+  width: 75%;
+  display: flex;
+  align-items: center;
+}
+.buy-tickets-btn-div.full-width {
+  width: 100%;
 }
 
 .modal-right-text-div {
     width: 60%;
     background-color: red;
+}
+
+.movie-release-date {
+  color: #000; 
+
 }
 
 
