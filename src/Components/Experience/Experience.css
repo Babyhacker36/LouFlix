@@ -1,0 +1,382 @@
+.exContainer {
+  transition: transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+  background: url("../../images/ExPagePics/resumeBackground.png") top center
+    repeat;
+  animation: backanim 45s linear infinite;
+  -webkit-animation: backanim 45s linear infinite;
+  height: 100%;
+}
+
+@keyframes backanim {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: 1280px 1220px;
+  }
+}
+
+@-webkit-keyframes backanim {
+  0% {
+    background-position: 0px 0px;
+  }
+
+  100% {
+    background-position: 1280px 1220px;
+  }
+}
+
+/* Experience body section container*/
+.exBodyRow {
+  font-size: 1.5em;
+  height: 85vh;
+  margin-top: 2%;
+}
+
+/* .exBackletterE {
+  background: url("../../images/ExPagePics/E-Letter.png") center / 80% 100%
+    no-repeat;
+    opacity: .3;
+}
+
+.exBackletterS {
+  background: url("../../images/ExPagePics/S-Letter.png") center / 80% 100%
+    no-repeat;
+    opacity: .3;
+} */
+.tabSection {
+  padding-top: 1%;
+  height: 80vh;
+}
+
+.mb-3 {
+  border-bottom: none;
+  font-size: 1.8em;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-tabs .nav-link {
+  background: 0 0;
+  border-radius: 5px;
+  color: var(--dark);
+  margin: 0 10px;
+  padding: 0 10px;
+}
+
+.nav-tabs .nav-link:hover {
+  border: 1px solid var(--dark);
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: var(--white);
+  background-color: var(--dark);
+
+  margin-bottom: 10%;
+}
+
+/* contains all experience page subsections, children */
+.exRow {
+  margin: 0;
+  overflow-y: hidden;
+}
+
+.exNavRow {
+  margin-top: 2%;
+}
+
+.exHeader {
+  display: flex;
+  justify-content: center;
+}
+
+.exLeftCol {
+  margin-top: 2%;
+  padding: 20px;
+  position: relative;
+}
+
+.exRightCol {
+  margin-top: 2%;
+  padding: 20px;
+  position: relative;
+}
+
+.exInnerDiv {
+  text-align: right;
+  width: auto;
+}
+
+.exInnerDivRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 1.1em;
+}
+
+.exInnerDivRight a {
+  text-align: center;
+  text-decoration: none;
+}
+
+.exInnerDivRight ul {
+  list-style-type: square;
+}
+
+.exInnerDivRight ul li {
+  margin-bottom: 2%;
+}
+.louPort {
+  width: 35%;
+  border: 1px solid var(--dark);
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 4px 25px rgba(8, 8, 8, 0.7);
+}
+
+/* subpages more tabs */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: var(--white);
+  background-color: var(--dark);
+}
+
+.tabSection .nav-item {
+  margin-bottom: 1%;
+}
+.tabSection .nav-item a {
+  color: #dadada;
+  background-color: var(--dark);
+  border: none;
+  border-radius: 5px;
+  min-width: 105px;
+}
+.tabSection .nav-item a:hover {
+  background-color: var(--white);
+  color: var(--dark);
+  border: 1px solid var(--dark);
+}
+
+.tabBodyBtnCol {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tabBodyBtnCol .hideArrow {
+  visibility: hidden;
+}
+
+.tabBodyBtnCol .nav-link.active {
+  border: 1px solid var(--dark);
+  background-color: var(--white);
+  color: var(--dark);
+}
+
+.RowBorder {
+  border-bottom: 1px solid #5b5b5b;
+}
+
+/* skills section  */
+.progressbardiv {
+  margin-bottom: 3%;
+}
+
+.progressRightDiv,
+.progressLeftDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.progress {
+  --bs-progress-height: 100%;
+  --bs-progress-font-size: 1.1em;
+  --bs-progress-bg: transparent;
+  --bs-progress-border-radius: 5px;
+  border: 2px solid #888888;
+  --bs-progress-bar-color: var(--white);
+  --bs-progress-bar-bg: var(--dark);
+  --bs-progress-bar-transition: width 5.6s linear;
+}
+
+.headerCol {
+  display: flex;
+  justify-content: center;
+}
+.headerCol button {
+  color: var(--dark);
+  background-color: transparent;
+  border: 2px solid var(--dark);
+  font-size: 1.2em;
+  padding: 0 10px;
+  margin-bottom: 2%;
+}
+
+.headerCol button:hover {
+  color: var(--white);
+  background-color: #424242 !important;
+  border: 2px solid var(--light-gray);
+  font-size: 1.2em;
+  padding: 0 10px;
+  margin-bottom: 2%;
+}
+
+/* This is the education section */
+
+.EdCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+}
+
+.innerDiv {
+  text-align: center;
+  margin: 1% 0;
+}
+
+.innerDiv p span:nth-child(1) {
+  font-size: 1.4em;
+}
+
+.jobTitle {
+  min-height: 125px;
+}
+
+/* large screens */
+
+@media screen and (max-width: 2561px) {
+  .exBodyRow {
+    font-size: 2em;
+  }
+}
+
+@media screen and (max-width: 2361px) {
+  .exBodyRow {
+    font-size: 2.4em;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .exBodyRow {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .exInnerDivRight {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .exInnerDivRight {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .exBodyRow {
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .exBodyRow {
+    font-size: 1.3em;
+  }
+}
+
+/* ============================== */
+/* small screens  */
+
+@media screen and (max-width: 1025px) {
+  .exBodyRow {
+    font-size: 1.6em;
+  }
+  .jobTitle {
+    font-size: 1.3em;
+  }
+  .exInnerDivRight {
+    font-size: 1.3em;
+  }
+  /* .exBackletterE {
+    background: url("../../images/ExPagePics/E-Letter.png") top / 100% 60%
+      no-repeat;
+  }
+
+  .exBackletterS {
+    background: url("../../images/ExPagePics/S-Letter.png") top / 100% 100%
+      no-repeat;
+  } */
+}
+
+@media screen and (max-width: 979px) {
+  .exBodyRow {
+    font-size: 1em;
+  }
+ 
+}
+
+@media screen and (max-width: 768px) {
+  .exBodyRow {
+    font-size: 1em;
+  }
+  .jobTitle {
+    font-size: 1.3em;
+  }
+}
+@media screen and (max-width: 481px) {
+  .exBodyRow {
+    font-size: 1em;
+  }
+  .jobTitle {
+    font-size: 1em;
+  }
+  .mb-3 {
+    font-size: 1em;
+  }
+
+  .exInnerDivRight {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .exBodyRow {
+    font-size: 1em;
+  }
+  .jobTitle {
+    font-size: 1em;
+  }
+  .mb-3 {
+    font-size: 1em;
+  }
+
+  .exInnerDivRight {
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .exBodyRow {
+    font-size: 0.9em;
+    margin-top: 10%;
+  }
+  .jobTitle {
+    font-size: 0.8em;
+  }
+  .mb-3 {
+    font-size: 1em;
+  }
+
+  .exInnerDivRight {
+    font-size: 0.9em;
+  }
+}

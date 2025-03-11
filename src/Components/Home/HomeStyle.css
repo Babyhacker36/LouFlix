@@ -1,0 +1,506 @@
+@import url("https://fonts.googleapis.com/css2?family=Iceland&display=swap");
+
+.mainContainer {
+  padding: 0;
+  margin: 0;
+
+}
+
+/* ================================== */
+/* Navigation section */
+/* Home Navigation only */
+.homeNav {
+  width: 100%;
+  position: absolute;
+  left: 0%;
+  top: 76.6%;
+  bottom: 19.65%;
+  transform: matrix(1, -0.032, 0, 1, 0, -37);
+  font-size: 2.1em;
+  font-family: "Iceland", cursive;
+}
+
+.nameheader {
+  font-size: 1.3em;
+  margin-top: -15px;
+}
+
+.homeNav a {
+  color: #81f7ff;
+  text-decoration: none;
+
+}
+
+.navCol {
+  display: flex;
+  justify-content: center;
+  margin: -4px 0px;
+}
+
+.homeNav a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.homeNav,
+.Col {
+  height: inherit;
+  text-align: right;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nameheader {
+  text-align: left;
+  color: #81f7ff;
+  padding-left: 3% !important;
+}
+
+/* ================================== */
+/* controls the speech bubble */
+
+#speech_bubble {
+  position: absolute;
+  left: 25%;
+  top: 20px;
+  width: 17%;
+  height: 20%;
+  background-image: url("../../images/speech_bubble.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  padding: 2.5% 2.5% 0px;
+  font-size: 1.8em;
+  animation: fade_in_speech_bubble_intro 6.5s 1 ease-in-out forwards;
+}
+
+@keyframes fade_in_speech_bubble_intro {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* speech bubble typewriter animation */
+/* positioning of the speech text */
+.speech_text {
+  position: relative;
+  /* width: 10em; */
+  line-height: 20px;
+  margin: 0 auto;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* controls the first line of the speech bubble text */
+.speech_typewriter {
+  animation: typewriter 1.5s steps(44) 0.5s 1 normal both;
+  font-size: .8em;
+}
+
+/* controls the second line */
+.speech_typewriter2 {
+  animation: typewriter 1.5s steps(44) 2s 1 normal both;
+  font-size: .8em;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 8.5em;
+  }
+}
+
+/* ========================= */
+/* Controls the speech bubble for the navigation hovers */
+
+#speech_bubble_div_nav {
+  position: absolute;
+  left: 25%;
+  top: 20px;
+  width: 17%;
+  height: 20%;
+  background-image: url("../../images/speech_bubble.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  padding: 30px 50px 0px;
+  font-size: 1.4em;
+  visibility: hidden;
+}
+
+/* adds and or removes class from component to animate */
+.speech_bubble_div_nav {
+  animation: fade_in_speech_bubble_intro_navs 1.5s 1 both;
+}
+
+@keyframes fade_in_speech_bubble_intro_navs {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* controls the first line of the speech bubble text */
+.speech_typewriter_nav {
+  animation: typewriter_nav 1.5s steps(44) 1 normal both;
+}
+
+/* controls the second line */
+.speech_typewriter_nav2 {
+  animation: typewriter_nav 1.5s steps(44) 1.1s 1 normal both;
+}
+
+@keyframes typewriter_nav {
+  from {
+    width: 0;
+  }
+  to {
+    width: 8.5em;
+  }
+}
+
+/* ========================= */
+/* controls the background color change */
+#banner > rect {
+  animation: background_color_fill 50s ease-in-out 10s infinite alternate;
+}
+
+@keyframes background_color_fill {
+  50% {
+    fill: #0300a8;
+  }
+
+  100% {
+    fill: #8acdff;
+  }
+}
+
+/* Controls the moon and sun rotation */
+#moonbase {
+  animation: moon_sun_spin 100s linear infinite forwards;
+  transform-origin: 60% 120%;
+  transform-box: content-box;
+}
+
+#sun {
+  animation: moon_sun_spin 100s linear infinite 50s forwards;
+  transform-origin: 60% 120%;
+  transform-box: content-box;
+}
+
+@keyframes moon_sun_spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* controls the clouds daytime stars animation */
+#start_stars2 ellipse {
+  animation: stars_fade_in_out 50s linear infinite alternate;
+}
+
+@keyframes stars_fade_in_out {
+  0% {
+    fill: #d9d9d9;
+  }
+  50% {
+    fill: #8acdff;
+  }
+  100% {
+    fill: #8acdff;
+  }
+}
+
+/* Controls the stars movement in background*/
+
+#start_stars {
+  animation: start_stars 50s linear 1 forwards;
+}
+
+@keyframes start_stars {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  100% {
+    transform: translate(100%, -25%);
+  }
+}
+
+#start_stars2 {
+  transform: translate(-100%, 0%);
+  animation: follow_stars 100s linear infinite forwards;
+}
+
+#follow_stars {
+  transform: translate(-100%, 0%);
+  animation: follow_stars 100s linear infinite 50s forwards;
+}
+
+@keyframes follow_stars {
+  0% {
+    transform: translate(-100%, 0%);
+  }
+  100% {
+    transform: translate(100%, -50%);
+  }
+}
+
+/* Controls the clouds movement in background */
+#start_high_cloud,
+#start_inner_cloud {
+  animation: start_clouds 70s linear 1 forwards;
+}
+
+@keyframes start_clouds {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(105%);
+  }
+}
+
+#inner_cloud,
+#high_cloud {
+  animation: clouds 140s linear infinite forwards;
+}
+
+#inner_cloud2,
+#high_cloud2 {
+  transform: translateX(100%);
+  animation: clouds 140s linear 70s infinite forwards;
+}
+
+@keyframes clouds {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+#shooting_star1 {
+  transform: translate(-10%, -20%);
+  animation: shooting_star1 40s linear infinite forwards;
+}
+
+@keyframes shooting_star1 {
+  0% {
+    transform: translate(-10%, -20%);
+  }
+  100% {
+    transform: translate(600%, 600%);
+  }
+}
+
+#shooting_star2 {
+  transform: translate(-30%, -30%);
+  animation: shooting_star2 40s linear 30s infinite forwards;
+}
+
+#shooting_star3 {
+  transform: translate(-30%, -30%);
+  animation: shooting_star2 40s linear 10s infinite forwards;
+}
+
+@keyframes shooting_star2 {
+  0% {
+    transform: translate(-30%, -30%);
+  }
+  100% {
+    transform: translate(600%, 600%);
+  }
+}
+/* Controls the foot movement */
+#front_shoe {
+  animation: front_shoe 2s linear infinite alternate;
+  transform-origin: center;
+  transform-box: fill-box;
+  transform: translate(1%, 0);
+}
+
+@keyframes front_shoe {
+  0% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(6deg);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #speech_bubble {
+    left: 25%;
+    top: 20px;
+    width: 17%;
+    padding: 2% 4.5% 0px 4.5%;
+    font-size: 1.4em;
+  }
+  .speech_text {
+    line-height: 20px;
+  }
+  .nameheader {
+    font-size: 1.2em;
+    margin-top: -8px;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.032, 0, 1, 0, -34);
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  #speech_bubble {
+    left: 25%;
+    top: 10px;
+    width: 17%;
+    padding: 2% 4.5% 0px 4.5%;
+    font-size: 1.3em;
+  }
+  .speech_text {
+    line-height: 20px;
+  }
+  .nameheader {
+    font-size: 1.1em;
+    margin-top: -12px;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.033, 0, 1, 0, -30);
+    font-size: 2em;
+  }
+}
+@media screen and (min-width: 1440px) {
+  #speech_bubble {
+    left: 25%;
+    top: 50px;
+    width: 17%;
+    padding: 2% 4.5% 0px 4.5%;
+    font-size: 1.4em;
+  }
+  .speech_text {
+    line-height: 25px;
+  }
+  .nameheader {
+    font-size: 1.1em;
+    margin-top: -7px;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.035, 0, 1, 0, -34);
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 1680px) {
+  #speech_bubble {
+    left: 25%;
+    top: 50px;
+    width: 17%;
+    padding: 2% 4.5% 0px 4.5%;
+    font-size: 1.9em;
+  }
+  .speech_text {
+    line-height: 30px;
+  }
+  .nameheader {
+    font-size: 1.3em;
+    margin-top: -15px;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.038, 0, 1, 0, -40);
+    font-size: 2.4em;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  #speech_bubble {
+    left: 25%;
+    top: 50px;
+    width: 17%;
+    padding: 2% 4.5% 0px 4.5%;
+    font-size: 2em;
+  }
+  .speech_text {
+    line-height: 30px;
+  }
+  .nameheader {
+    font-size: 1.3em;
+    margin-top: -18px;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.031, 0, 1, 0, -41);
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (min-width: 2360px) {
+  #speech_bubble {
+    left: 25%;
+    top: 50px;
+    width: 17%;
+    padding: 2% 4.5% 0px 4.5%;
+    font-size: 2.4em;
+  }
+
+  .speech_text {
+    line-height: 40px;
+  }
+  .nameheader {
+    font-size: 1.2em;
+    margin-top: -10px;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.042, 0, 1, 0, -74);
+    font-size: 4em;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  #speech_bubble {
+    left: 30%;
+    top: 50px;
+    width: 17%;
+    padding: 1.5% 7.5% 0px 4.5%;
+    font-size: 2.4em;
+  }
+
+  .speech_text {
+    line-height: 40px;
+  }
+
+  .nameheader {
+    font-size: 1.2em;
+    margin-top: -12px;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.024, 0, 1, 0, -58);
+    font-size: 3.5em;
+  }
+}

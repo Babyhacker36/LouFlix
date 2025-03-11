@@ -1,0 +1,344 @@
+/* Hamburger menu */
+.HamMenuCol {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--dark);
+}
+
+@media screen and (max-width: 1025px) {
+  .siteNavRow {
+    font-size: 2.3em;
+  }
+  #speech_bubble {
+    left: 5%;
+    top: 50px;
+    width: 37%;
+    padding: 5% 2.5% 0px;
+    font-size: 2.4em;
+  }
+  .speech_text {
+    line-height: 35px;
+  }
+  .nameheader {
+    font-size: 1.2em;
+    margin-top: -2px;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.082, 0, 1, 0, -38);
+    font-size: 2.2em;
+  }
+}
+
+@media screen and (max-width: 979px) {
+
+
+  #speech_bubble {
+    left: 25%;
+    top: 20px;
+    width: 37%;
+    padding: 2% 20.5% 0px 2.5%;
+    font-size: 1.1em;
+  }
+  .speech_text {
+    line-height: 20px;
+  }
+  .nameheader {
+    font-size: 1.2em;
+    margin-top: -2px;
+    text-align: right;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.022, 0, 1, 0, -34);
+    font-size: 1.6em;
+  }
+  .navCol {
+    display: flex;
+    justify-content: flex-end;
+    margin: -4px 0px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .HamMenuCol {
+    display: flex;
+  }
+  .logoBrandCol {
+    font-size: 1.5em;
+  }
+  .hamburger-react {
+    margin-top: 2%;
+    margin-right: 2%;
+  }
+
+
+
+
+  .socialMediaColNav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    
+  
+  }
+  .smIconsMobile {
+    width: 60px !important;
+    height: 55px !important;
+    border: 1px solid var(--white);
+    border-radius: 10px;
+  }
+
+  .smIconsMobile:hover {
+    width: 60px !important;
+    height: 50px !important;
+    border: 1px solid var(--white);
+    border-radius: 10px;
+    background-color: var(--dark);
+  }
+
+  .siteNavCol {
+    display: none;
+  }
+
+  .siteNavCol > ul {
+    list-style-type: none;
+    display: flex;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.05, 0, 1, 0, -50);
+  }
+
+  .nameheader {
+    text-align: right;
+    font-size: 1.6em;
+    margin-top: 0px;
+  }
+
+  .navCol {
+    margin: -2.5px 0;
+    font-size: 1.6em;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .svgContainer {
+    overflow: hidden;
+  }
+
+  svg {
+    transform: scaleX(1.3);
+    overflow: hidden;
+  }
+
+  #speech_bubble {
+    left: 5%;
+    top: 20px;
+    width: 37%;
+    padding: 3.5% 2.5% 0px;
+    font-size: 1.8em;
+  }
+  .speech_text {
+    line-height: 35px;
+  }
+
+  
+  .offcanvas {
+    --bs-offcanvas-width: 75%;
+    background-color: rgba(0, 0, 0, 0.9);
+    font-size: 2em;
+    /* z-index: 1; */
+    /* display: flex;
+   
+    align-items: center;
+    justify-content: center; */
+  }
+
+  .MobileMenuCanvas {
+    display: flex;
+    flex-direction: column;
+   justify-content: flex-start;
+   height: 100%;
+  }
+
+  .MobileMenuCanvas .active a {
+    color: var(--white);
+    /* background-color: var(--light-gray); */
+    border: 1px solid var(--light-gray);
+    padding: 5px 15px;
+    border-radius: 10px;
+  }
+  .MobileMenuCanvas ul {
+    list-style-type: none;
+ 
+  }
+
+
+  .MobileMenuCanvas ul li {
+    border-left: 1px solid var(--white);
+    padding-bottom: 10px;
+    margin: 60px 0;
+    padding: 0px 0 0 20px ;
+
+   
+    
+  }
+
+  .MobileMenuCanvas ul li a {
+    list-style-type: none;
+    text-decoration: none !important;
+    color: #dadada;
+  
+
+  }
+
+}
+
+@media screen and (max-width: 481px) {
+  .logoBrandCol {
+    font-size: 1.2em;
+  }
+
+  .hamburger-react {
+    margin-top: 4%;
+    margin-right: 2%;
+  
+  }
+  .smIconsMobile {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.04, 0, 1, 0, -47);
+    color: #fff;
+  }
+
+  .nameheader span {
+    font-size: 0.9em;
+  }
+
+  .navCol {
+    margin: -4px 0;
+    font-size: 1.3em;
+  }
+  #speech_bubble {
+    left: 2%;
+    top: 20px;
+    width: 37%;
+    padding: 5% 2.5% 0px;
+    font-size: 1.1em;
+  }
+  .speech_text {
+    line-height: 15px;
+  }
+  .svgContainer {
+    overflow: hidden;
+  }
+
+  svg {
+    transform: scaleX(2);
+    overflow: hidden;
+  }
+
+
+}
+
+@media screen and (max-width: 415px) {
+  .logoBrandCol {
+    font-size: 1.2em;
+  }
+
+  .hamburger-react {
+    margin-top: 4.5%;
+    margin-right: 2%;
+  }
+  .homeNav {
+    transform: matrix(1, -0.04, 0, 1, 0, -45);
+  }
+
+  .nameheader {
+    font-size: 1.4em;
+  }
+
+  .navCol {
+    margin: -2px 0;
+    font-size: 1.1em;
+  }
+  #speech_bubble {
+    left: 1%;
+    top: 5px;
+    width: 40%;
+    padding: 5% 2.5% 0px;
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .logoBrandCol {
+    font-size: 1em;
+  }
+  .smIconsMobile {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .hamburger-react {
+    margin-top: 4.5%;
+    margin-right: 2%;
+  }
+
+  .homeNav {
+    transform: matrix(1, -0.06, 0, 1, 0, -40);
+  }
+
+  .nameheader {
+    font-size: 1.4em;
+  }
+
+  .navCol {
+    margin: -2px 0;
+    font-size: 1.1em;
+  }
+  #speech_bubble {
+    left: 1%;
+    top: 5px;
+    width: 40%;
+    padding: 5% 2.5% 0px;
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .logoBrandCol {
+    font-size: 1.1em;
+  }
+
+  .offcanvas {
+    font-size: 1.5em;
+  }
+  .homeNav {
+    transform: matrix(1, -0.04, 0, 1, 0, -26);
+  }
+
+  .nameheader {
+    font-size: 0.9em;
+  }
+
+  .navCol {
+    margin: -2px 0;
+    font-size: 0.7em;
+  }
+  #speech_bubble {
+    left: 1%;
+    top: 20px;
+    width: 38%;
+    padding: 5% 2.5% 0px;
+    font-size: 0.7em;
+  }
+
+  .speech_text {
+    line-height: 10px;
+  }
+}

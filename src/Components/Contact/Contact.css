@@ -1,0 +1,132 @@
+.contactBody {
+  background: url("../../images/ContactPics/new_york_city_neon_cityscape.jpg")
+    center / 100% 100% no-repeat;
+  height: 92vh;
+}
+
+.ContactRow {
+  display: flex;
+  height: inherit;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.glow {
+  font-size: 7em;
+  color: #fff;
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073,
+      0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6,
+      0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.socialMediaCol {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.social-icons {
+  height: 200px !important;
+  width: 200px !important;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.social-icons:hover {
+  background-color: rgba(129, 129, 129, 0.8);
+}
+
+@media screen and (min-width: 2360px) {
+  .glow {
+    font-size: 5em;
+  }
+}
+@media screen and (min-width: 2560px) {
+  .glow {
+    font-size: 7em;
+  }
+}
+
+@media screen and (max-width: 1068px) {
+  .contactBody {
+    background: url("../../images/ContactPics/new_york_city_neon_cityscape.jpg")
+      center / 150% 100% no-repeat;
+  }
+  .glow {
+    font-size: 4em;
+  }
+
+  .socialMediaCol {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: auto;
+  }
+
+  .social-icons:hover {
+    background-color: var(--light-gray);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contactBody {
+    background: url("../../images/ContactPics/new_york_city_neon_cityscape.jpg")
+      center / 170% 110% no-repeat;
+  }
+  .glow {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .contactBody {
+    background: url("../../images/ContactPics/new_york_city_neon_cityscape.jpg")
+      center / 270% 110% no-repeat;
+  }
+  .glow {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .glow {
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .glow {
+    font-size: 2.5em;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .glow {
+    font-size: 1.5em;
+  }
+}

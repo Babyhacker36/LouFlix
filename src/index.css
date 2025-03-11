@@ -1,13 +1,234 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ========================== */
+/* Global settings */
+@import url("https://fonts.googleapis.com/css2?family=Iceland&family=Permanent+Marker&family=Rock+Salt&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --dark: #1f1f1f;
+  --light-gray: #818181;
+  --white: #f8f8f8;
+  --light-bue: #1f00d1;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: var(--dark);
+}
+
+body {
+  font-family: "Roboto", serif;
+  background-color: var(--white);
+  color: var(--dark);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+a:hover {
+  color: var(--light-gray);
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+/* Navbar Dark Mode Styling */
+.dark-mode .siteNavRow {
+  background-color: var(--dark); 
+  border-bottom: 2px solid var(--light-gray);
+}
+
+.dark-mode .siteNavCol ul li a {
+  color: white; 
+}
+
+.dark-mode .siteNavCol .active a {
+  background-color: var(--white);
+  color: var(--dark);
+}
+
+.dark-mode .brandLogo {
+  filter: invert(1); 
+}
+
+.dark-mode .demo-btns {
+  border: 1px solid var(--white);
+}
+
+.dark-mode a {
+  color: var(--white);
+}
+
+.dark-mode a:hover {
+  color: var(--light-gray);
+}
+
+.dark-mode .circle-image-container {
+  border: 11px solid var(--white);
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.7);
+}
+
+.dark-mode .louPort {
+  border: 1px solid var(--white);
+  box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.7);
+}
+
+.dark-mode .nav-tabs .nav-link {
+  color: var(--white);
+}
+
+.dark-mode .tabBodyBtnCol .nav-link.active {
+  border: 1px solid var(--white);
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.dark-mode .nav-tabs .nav-link:hover {
+  border: 1px solid var(--white);
+}
+
+.dark-mode .headerCol button {
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.dark-mode .progress {
+  --bs-progress-height: 100%;
+  --bs-progress-font-size: 1.1em;
+  --bs-progress-bg: transparent;
+  --bs-progress-border-radius: 5px;
+  border: 2px solid #888888;
+  --bs-progress-bar-color: var(--white);
+  --bs-progress-bar-bg: var(--light-gray);
+  --bs-progress-bar-transition: width 5.6s linear;
+}
+
+.dark-mode .HamMenuCol {
+  color: var(--white);
+}
+
+.BacktoDesigns {
+  margin-top: 1%;
+}
+
+.BacktoDesigns a {
+  font-size: 2em;
+  text-decoration: none;
+  color: var(--light-bue);
+}
+
+.BacktoDesigns a:hover {
+  color: #fff;
+}
+
+
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+.logoBrandCol {
+  display: flex;
+  align-items: center;
+}
+.brandLogo {
+  width: 35px;
+  height: 35px;
+}
+
+.site-nav-row-parent {
+  position: sticky;
+  top: 0;
+  height: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
+ 
+  background-color: var(--white);
+  height: 8vh;
+  z-index: 1000;
+}
+/* navigation on all pages */
+.siteNavRow {
+  font-family: "Iceland", cursive;
+  border-bottom: 1px solid var(--light-gray);
+  font-size: 30px;
+  height: 8vh;
+
+}
+
+.siteNavCol > ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  justify-content: flex-end;
+  width: auto;
+  margin-top: 10px;
+
+}
+
+.siteNavCol > ul > li {
+  padding: 0 0 0 50px;
+}
+
+.siteNavRow a {
+  color: var(--dark);
+  text-decoration: none;
+}
+
+.siteNavRow a:hover {
+  color: var(--light-gray);
+}
+
+.siteNavCol .active a {
+  background-color: var(--dark);
+  color: var(--white);
+  padding: 7px 6px 10px;
+  border-radius: 10px;
+}
+
+.toggle-div {
+  cursor: pointer;
+  width: 65px;
+  height: 40px;
+  display: flex;
+  margin: 3px 0 0 10px;
+}
+.toggle-div img {
+  width: 100%;
+  height: 100%;
+}
+
+/* scroll bar  */
+/* width */
+::-webkit-scrollbar {
+  width: auto;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000;
+  border-radius: 100%;
+  height: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 5px;
+  border: 1px solid var(--light-bue);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--light-bue);
+}
+
+@media screen and (min-width: 768px) {
+  .HamMenuCol {
+    display: none;
+  }
+
+  /* controls container of porfolio Jumbotron || design header  */
+
 }

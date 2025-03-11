@@ -1,3 +1,13 @@
+## Author
+
+**Lou Carter**  
+GitHub: [github.com/Babyhacker36](https://github.com/Babyhacker36)  
+LinkedIn: [linkedin.com/in/louiscarterjr/](https://www.linkedin.com/in/louiscarterjr/)  
+
+## License
+
+This project is licensed under the MIT License.  
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

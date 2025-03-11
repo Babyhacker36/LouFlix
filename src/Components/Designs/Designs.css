@@ -1,0 +1,244 @@
+/* controls container of porfolio Jumbotron || design header  */
+.containerBody {
+  height: 60vh;
+}
+
+.designheaderRow {
+  padding-top: 1%;
+  height: 60vh;
+}
+
+.designsContainer {
+  background: url("../../images/mb_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.porfolio-container-row {
+  justify-content: center;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.portfolio-col {
+  padding: 20px 0;
+}
+
+.Portfolio-images {
+  width: 70%;
+
+}
+
+.demo-btns {
+  width: auto;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--dark);
+  margin: 5px 5px;
+}
+
+.bannerCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==================================== */
+/* banner header */
+
+.bannerCol > div:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #81f7ff;
+  font-size: 8em;
+  font-family: "Rock Salt", cursive;
+  letter-spacing: 8px;
+}
+
+.bannerCol > div > span:nth-child(1) {
+  animation-name: fadeTitle;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes fadeTitle {
+  0% {
+    opacity: 0%;
+    transform: translate3d(-10px, 0, 0);
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073,
+      0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  100% {
+    opacity: 100%;
+    transform: translate3d(0, 0, 0);
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6,
+      0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+/* ===================================== */
+/* glow animation */
+
+.miamiGlow {
+  -webkit-animation: glow 20s ease-in-out infinite alternate;
+  -moz-animation: glow 20s ease-in-out infinite alternate;
+  animation: glow 20s ease-in-out infinite alternate;
+}
+
+.subHeader {
+  line-height: 50px;
+  font-size: 0.15em;
+  animation: fadeTitle;
+  animation-duration: 5s;
+}
+
+/* ========================================= */
+/* scroll down dot animation */
+.dotDiv {
+  display: flex;
+  justify-content: center;
+  width: 20px;
+  height: 40px;
+  margin-top: 2%;
+  border: 2px solid #858585;
+  border-radius: 5px;
+  animation: fadeTitle;
+  animation-duration: 5s;
+  animation-timing-function: ease-in;
+}
+
+.dotDivHide {
+  visibility: hidden;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #858585;
+  border-radius: 100%;
+  position: relative;
+  animation: dotMove 1s linear 0s infinite alternate;
+  -moz-animation: dotMove 1s linear 0s infinite alternate;
+  -o-animation: dotMove 1s linear 0s infinite alternate;
+  -webkit-animation: dotMove 1s linear 0s infinite alternate;
+}
+
+@keyframes dotMove {
+  0% {
+    top: 50%;
+  }
+  25% {
+    top: 70%;
+  }
+  50% {
+    top: 30%;
+  }
+  75% {
+    top: 20%;
+  }
+  100% {
+    top: 10%;
+  }
+}
+@-moz-keyframes dotMove {
+  0% {
+    top: 50%;
+  }
+  25% {
+    top: 70%;
+  }
+  50% {
+    top: 30%;
+  }
+  75% {
+    top: 20%;
+  }
+  100% {
+    top: 10%;
+  }
+}
+
+@-o-keyframes dotMove {
+  0% {
+    top: 50%;
+  }
+  25% {
+    top: 70%;
+  }
+  50% {
+    top: 30%;
+  }
+  75% {
+    top: 20%;
+  }
+  100% {
+    top: 10%;
+  }
+}
+
+@-webkit-keyframes dotMove {
+  0% {
+    top: 50%;
+  }
+  25% {
+    top: 70%;
+  }
+  50% {
+    top: 30%;
+  }
+  75% {
+    top: 20%;
+  }
+  100% {
+    top: 10%;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .bannerCol > div:nth-child(1) {
+    font-size: 6em;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .bannerCol > div:nth-child(1) {
+    font-size: 5em;
+  }
+}
+
+@media screen and (max-width: 1026px) {
+  .bannerCol > div:nth-child(1) {
+    font-size: 3.5em;
+  }
+  .subHeader {
+    font-size: 0.3em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bannerCol > div:nth-child(1) {
+    font-size: 2.5em;
+  }
+
+  /* controls container of porfolio Jumbotron || design header  */
+.containerBody {
+  height: 40vh;
+}
+
+.designheaderRow {
+  padding-top: 1%;
+  height: 40vh;
+}
+}
+
+@media screen and (max-width: 768px) {
+  .bannerCol > div:nth-child(1) {
+    font-size: 2em;
+  }
+
+}

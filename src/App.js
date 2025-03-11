@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import HomePage from "./Components/Home/HomePage";
+import DesignsPage from "./Components/Designs/DesignsPage";
+import ExperiencePage from "./Components/Experience/ExperiencePage";
+import ContactPage from "./Components/Contact/ContactPage";
+import { Route, Routes } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import "./App.css";
+
+import AboutMePage from "./Components/Aboutme/AboutMePage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container fluid className="mainContainer">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/AboutMe" element={<AboutMePage />} />
+        <Route path="/Portfolio" element={<DesignsPage />} />
+        <Route path="/Career" element={<ExperiencePage />} />
+        <Route path="/Contact" element={<ContactPage />} />
+      </Routes>
+    </Container>
   );
 }
 
