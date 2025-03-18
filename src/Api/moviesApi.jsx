@@ -1,4 +1,4 @@
-const API_KEY = '5cd640db7a351fb891b792aab5d5ad11'; // Replace with your TMDb API key
+const API_KEY = process.env.REACT_APP_TMDB_API_KEY; // Fetch API key from environment
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 /**
@@ -71,7 +71,6 @@ export const fetchMovieDetails = async (movieId) => {
   };
 };
 
-
 /**
  * Fetches a list of movie genres from TMDb.
  * @returns {Promise<Object>} A mapping of genre IDs to genre names.
@@ -94,4 +93,40 @@ export const fetchCredits = async (movieId) => {
   const url = `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`;
   const data = await fetchData(url);
   return data; // Return the cast and crew details
+};
+
+/**
+ * Fetches popular TV shows from TMDb.
+ * @param {number} page - The page number for pagination.
+ * @param {string} region - Optional, the region for filtering by country (e.g., 'US').
+ * @returns {Promise<Array>} List of popular TV shows.
+ */
+export const fetchPopularTVShows = async (page = 1, region = 'US') => {
+  const url = `${BASE_URL}/tv/popular?api_key=${API_KEY}&page=${page}&region=${region}`;
+  const data = await fetchData(url);
+  return data.results; // Return the array of popular TV shows
+};
+
+/**
+ * Fetches search results based on the search query.
+ * @param {string} query - The search query entered by the user.
+ * @param {number} page - The page number for pagination (default is 1).
+ * @returns {Promise<Array>} List of search results.
+ */
+export const searchMovies = async (query, page = 1) => {
+  const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`;
+  const data = await fetchData(url);
+  return data.results; // Return the search results array
+};
+
+/**
+ * Fetches top-rated TV shows from TMDb.
+ * @param {number} page - The page number for pagination.
+ * @param {string} region - Optional, the region for filtering by country (e.g., 'US').
+ * @returns {Promise<Array>} List of top-rated TV shows.
+ */
+export const fetchTopRatedTVShows = async (page = 1, region = 'US') => {
+  const url = `${BASE_URL}/tv/top_rated?api_key=${API_KEY}&page=${page}&region=${region}`;
+  const data = await fetchData(url);
+  return data.results; // Return the array of top-rated TV shows
 };

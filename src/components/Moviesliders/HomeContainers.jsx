@@ -1,5 +1,5 @@
-import React from 'react';
-import './HomeContainer.css'; // Import specific CSS for the container
+import React from "react";
+import "./HomeContainer.css"; // Import specific CSS for the container
 
 const HomeContainer = ({ title, movies }) => {
   return (

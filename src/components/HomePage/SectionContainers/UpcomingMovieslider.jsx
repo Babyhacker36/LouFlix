@@ -1,5 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import { fetchUpcomingMovies, fetchGenres, fetchMovieVideos, fetchCredits, fetchMovieDetails} from "../../../Api/moviesApi.jsx";
+import {
+  fetchUpcomingMovies,
+  fetchGenres,
+  fetchMovieVideos,
+  fetchCredits,
+  fetchMovieDetails,
+} from "../../../Api/moviesApi.jsx";
 import "./HomeMoviesSlider.css";
 import MovieCard from "../../Cards/MovieCards.jsx";
 import MovieModal from "../../Modals/MovieModal.jsx";
@@ -23,7 +29,10 @@ const UpcomingMoviesSlider = () => {
     const getMoviesAndGenres = async () => {
       try {
         setLoading(true);
-        const [upcomingMovies, genresData] = await Promise.all([fetchUpcomingMovies(1), fetchGenres()]);
+        const [upcomingMovies, genresData] = await Promise.all([
+          fetchUpcomingMovies(1),
+          fetchGenres(),
+        ]);
 
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
@@ -34,7 +43,9 @@ const UpcomingMoviesSlider = () => {
           return releaseDate >= tomorrow;
         });
 
-        const sortedMovies = filteredMovies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        const sortedMovies = filteredMovies.sort(
+          (a, b) => new Date(b.release_date) - new Date(a.release_date)
+        );
 
         setMovies(sortedMovies);
         setGenres(genresData);
@@ -70,8 +81,10 @@ const UpcomingMoviesSlider = () => {
     };
   }, []);
 
-  const scrollLeft = () => sliderRef.current.scrollBy({ left: -250, behavior: "smooth" });
-  const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: "smooth" });
+  const scrollLeft = () =>
+    sliderRef.current.scrollBy({ left: -250, behavior: "smooth" });
+  const scrollRight = () =>
+    sliderRef.current.scrollBy({ left: 250, behavior: "smooth" });
 
   const handleMouseDown = (e) => {
     isDragging.current = true;
@@ -105,7 +118,7 @@ const UpcomingMoviesSlider = () => {
       const videoUrl = await fetchMovieVideos(movie.id);
       const credits = await fetchCredits(movie.id);
       const movieDetails = await fetchMovieDetails(movie.id);
-  
+
       if (videoUrl) {
         setVideoUrl(videoUrl);
         setSelectedMovie({ ...movie, runtime: movieDetails.runtime, credits });
@@ -117,7 +130,6 @@ const UpcomingMoviesSlider = () => {
       alert("An error occurred while fetching movie details.");
     }
   };
-  
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -127,17 +139,22 @@ const UpcomingMoviesSlider = () => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error}</div>;
-  if (!movies.length) return <div className="no-movies">No upcoming movies available at the moment.</div>;
+  if (!movies.length)
+    return (
+      <div className="no-movies">
+        No upcoming movies available at the moment.
+      </div>
+    );
 
   return (
-    <div className="slider-container">
+    <div className="slider-container" id="upcoming" >
       <div className="slider-wrapper">
         <h2>Upcoming Movies</h2>
         <button className="arrow-btn left" onClick={scrollLeft}>
           &#9664;
         </button>
         <div
-          className="movies-slider"
+          className="movies-slider hide-circle-progress"
           ref={sliderRef}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}

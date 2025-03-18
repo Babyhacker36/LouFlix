@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+
 import {
   fetchInTheaters, 
   fetchGenres,
@@ -30,11 +31,16 @@ const InTheatersMoviesSlider = () => {
       try {
         setLoading(true);
         const [inTheatersMovies, genresData] = await Promise.all([
-          fetchInTheaters(), // Assuming this fetches "In Theaters" movies
+          fetchInTheaters(), // Fetch "In Theaters" movies
           fetchGenres(),
         ]);
 
-        setMovies(inTheatersMovies);
+        // Sort movies by release date (newest to oldest)
+        const sortedMovies = inTheatersMovies.sort((a, b) => 
+          new Date(b.release_date) - new Date(a.release_date)
+        );
+
+        setMovies(sortedMovies);
         setGenres(genresData);
         setLoading(false);
       } catch (err) {
@@ -109,7 +115,7 @@ const InTheatersMoviesSlider = () => {
 
       if (videoUrl) {
         setVideoUrl(videoUrl);
-        setSelectedMovie({ ...movie, runtime: movieDetails.runtime,credits }); // Pass movie details to the modal
+        setSelectedMovie({ ...movie, runtime: movieDetails.runtime, credits }); // Pass movie details to the modal
         setIsModalOpen(true);
       } else {
         alert("No trailer available for this movie.");
@@ -132,7 +138,7 @@ const InTheatersMoviesSlider = () => {
     return <div className="no-movies">No movies available at the moment.</div>;
 
   return (
-    <div className="slider-container">
+    <div className="slider-container" id="latest" >
       <div className="slider-wrapper">
         <h2>In Theaters</h2>
         <button className="arrow-btn left" onClick={scrollLeft}>
@@ -164,12 +170,12 @@ const InTheatersMoviesSlider = () => {
         </button>
       </div>
       <MovieModal
-  isOpen={isModalOpen}
-  videoUrl={videoUrl}
-  onClose={closeModal}
-  movie={selectedMovie}
-  genres={genres} // pass the genres data here
-/>
+        isOpen={isModalOpen}
+        videoUrl={videoUrl}
+        onClose={closeModal}
+        movie={selectedMovie}
+        genres={genres} // Pass the genres data here
+      />
     </div>
   );
 };

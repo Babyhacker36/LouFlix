@@ -2,6 +2,7 @@
   "name": "louflix",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/louflix",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
@@ -11,7 +12,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.7.7",
+    "axios": "^1.8.2",
     "bootstrap": "^5.3.3",
     "font-awesome": "^4.7.0",
     "react": "^18.3.1",

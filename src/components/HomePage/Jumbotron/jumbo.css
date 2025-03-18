@@ -57,6 +57,22 @@
   color: #fff;
 }
 
+@media (max-width: 1300px) {
+  #jumbotron {
+    height: 70vh;
+    max-height: 525px;
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #jumbotron {
+    height: 60vh;
+    max-height: 425px;
+    margin-top: 50px;
+  }
+}
+
 @media (max-width: 767px) {
   #jumbotron {
     height: 40vh;

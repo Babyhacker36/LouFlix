@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { fetchNowPlayingMovies, fetchUpcomingMovies } from '../../Api/moviesApi.jsx';
-import HomeContainer from './HomeContainers.jsx';
-import '../SectionContainers/HomeContainer.css';
+import React, { useEffect, useState } from "react";
+import {
+  fetchNowPlayingMovies,
+  fetchUpcomingMovies,
+} from "../../Api/moviesApi.jsx";
+import HomeContainer from "./HomeContainers.jsx";
+import "../SectionContainers/HomeContainer.css";
 
 const LatestMoviesSection = () => {
   const [movies, setMovies] = useState([]);
@@ -17,12 +20,10 @@ const LatestMoviesSection = () => {
         const upcomingMovies = await fetchUpcomingMovies(1);
 
         // Combine, deduplicate, and sort movies by newest release date
-        const mergedMovies = [
-          ...nowPlayingMovies,
-          ...upcomingMovies,
-        ]
+        const mergedMovies = [...nowPlayingMovies, ...upcomingMovies]
           .filter(
-            (movie, index, self) => self.findIndex((m) => m.id === movie.id) === index
+            (movie, index, self) =>
+              self.findIndex((m) => m.id === movie.id) === index
           )
           .sort((a, b) => new Date(b.release_date) - new Date(a.release_date)); // Newest first
 

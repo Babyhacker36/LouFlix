@@ -72,10 +72,10 @@ const MovieModal = ({ isOpen, videoUrl, onClose, movie = {}, genres = {} }) => {
               ></iframe>
             </div>
             <div>
-            <h5>
+              <h5>
                 {title} ({releaseYear})
               </h5>
-              <p className="movie-description">{shortDescription}</p>{" "}
+              <p className="movie-description">{shortDescription}</p>
             </div>
           </div>
 
@@ -118,7 +118,9 @@ const MovieModal = ({ isOpen, videoUrl, onClose, movie = {}, genres = {} }) => {
                     isZeroRating ? "full-width" : ""
                   }`}
                 >
-                  <button className="watch-trailer-btn buy-tickets-btn">Buy Tickets</button>
+                  <button className="watch-trailer-btn buy-tickets-btn">
+                    Buy Tickets
+                  </button>
                 </div>
               </div>
             </div>
@@ -152,7 +154,9 @@ const MovieModal = ({ isOpen, videoUrl, onClose, movie = {}, genres = {} }) => {
                 )}
               </div>
 
-              <div style={{ borderTop: "1px solid #3f3f3f", paddingTop: "10px" }}>
+              <div
+                style={{ borderTop: "1px solid #3f3f3f", paddingTop: "10px" }}
+              >
                 <h6>Director:</h6>
                 {crew.length > 0 ? (
                   <ul>

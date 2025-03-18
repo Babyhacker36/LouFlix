@@ -13,10 +13,10 @@
   
   /* Styling the movie list */
   .movies-list {
-    display: grid; /* Use CSS Grid for better control */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust columns based on available space */
-    gap: 20px; /* Spacing between cards */
-    margin-bottom: 20px; /* Margin between rows */
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px; 
+    margin-bottom: 20px;
   }
   
   /* Movie card styling */
@@ -92,7 +92,6 @@
   .load-more-btn {
     margin: 20px auto;
     padding: 12px 20px;
-    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
@@ -102,15 +101,6 @@
     width: 200px;
     transition: background-color 0.3s ease;
   }
-  
-  /* Hover effect for "Load More" button */
-  .load-more-btn:hover {
-    background-color: #218838;
-  }
-  
-  /* Disabled state for "Load More" button */
-  .load-more-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+
+ 
   
